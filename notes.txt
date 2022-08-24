@@ -1,0 +1,4 @@
+Set up steps:
+Root dir:
+- npm install, npm init
+- npx create-react-app client

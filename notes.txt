@@ -1,4 +1,3 @@
-Set up steps:
 Root dir:
 - npm install, npm init
 - npx create-react-app client
@@ -9,13 +8,16 @@ Root dir:
 - dependencies/modules
   - concurrently
   - express
+
 Client dir:
 - package.json:
   "proxy": "http://localhost:8000"
+
 Heroku Setup
 - heroku login
 - heroku create <domain-name>
 - heroku apps:rename --app OLDNAME NEWNAME
+
 Heroku Database
 - heroku addons:create heroku-postgresql:hobby-dev
 - npm install pg (node postgres)
@@ -29,6 +31,7 @@ Heroku Database
   });
 - set DATABASE_URL=postgres://$(whoami) (for local dev)
 - heroku pg:psql (interact w/ db)
+
 Heroku Config Vars & .env File
 - heroku config (list config vars, heroku version of .env)
   - .gitignore ".env" b/c only for local use
@@ -38,13 +41,15 @@ Heroku Config Vars & .env File
 - heroku config:set CONFIG_VAR=joesmith
 - heroku config:unset CONFIG_VAR
 - access config vars in code: process.env.CONFIG_VAR
+
 Run Locally
 - heroku local web (runs on port 5000)
+
 Open Website Running Remote
 - heroku open
 
 Update App
-- git push heroku master
+- git push heroku master (or main)
 
 
 Notes

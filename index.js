@@ -16,9 +16,9 @@ const SERVER_ERROR_CODE = 500;
 const CLIENT_ERROR_CODE = 400;
 
 // Express only serves static assets in production
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 // let db = await pool.connect();
 // await db.query(qry, [access_token, refresh_token, expires_at, 90470]);
@@ -26,14 +26,14 @@ const CLIENT_ERROR_CODE = 400;
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname+'/client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 app.get('/test', async (req, res) => {
   try {
-    res.send("hey");
-    console.log("hey");
+    res.send("Hello World");
+    console.log("Hello World");
   } catch (err) {
     console.error(err);
     res.send("Error " + err);

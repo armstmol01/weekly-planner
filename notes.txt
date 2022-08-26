@@ -11,12 +11,13 @@ Root dir:
 
 Client dir:
 - package.json:
-  "proxy": "http://localhost:8000"
+  "proxy": "http://localhost:5000"
 
 Heroku Setup
 - heroku login
 - heroku create <domain-name>
 - heroku apps:rename --app OLDNAME NEWNAME
+- heroku auth:whoami (get username)
 
 Heroku Database
 - heroku addons:create heroku-postgresql:hobby-dev
@@ -49,9 +50,25 @@ Open Website Running Remote
 - heroku open
 
 Update App
-- git push heroku master (or main)
-
+- git push heroku main (or master)
 
 Notes
 - werkweek.io, werkweeks.com
 - upgrade to paid Heroku by Nov 28 2022
+Database Create Table Statements
+create table users(
+  id serial,
+  username text not null,
+  password text not null,
+  salt text not null,
+  primary key(id));
+
+create table tasks(
+  id serial,
+  user_id integer not null,
+  day integer not null,
+  content text not null,
+  CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+  primary key(id));

@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"node index.js\" \"cd client && npm start\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/armstmol01/weekly-planner/issues"
   },
-  "homepage": "https://github.com/armstmol01/weekly-planner#readme"
+  "homepage": "https://github.com/armstmol01/weekly-planner#readme",
+  "dependencies": {
+    "concurrently": "^7.3.0",
+    "pg": "^8.8.0"
+  }
 }

@@ -19,7 +19,7 @@ const Login = () => {
             <button type="submit"><BsArrowRightShort className='btn__arrow'/></button>
           </div>
           <div>
-            <input type='password' name='passcode' placeholder='passcode'></input>
+            <input type='password' name='passcode' placeholder='password'></input>
             <button type="submit"><BsArrowRightShort className='btn__arrow'/></button>
           </div>
         </form>

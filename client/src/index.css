@@ -1,13 +1,57 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Padauk:wght@400;700&family=Roboto&display=swap');
+
+/* font-family: 'Inter', sans-serif;
+font-family: 'Padauk', sans-serif;
+font-family: 'Roboto', sans-serif; */
+
+* { /*every element on page*/
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  list-style: none; /*no bullets on lists*/
+  text-decoration: none; /*no underlines on links*/
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*css variables help prevent redundancy*/
+:root {
+  --color-bg: #e5f6fd;
+  --color-bg-variant: #7fa6b3;
+  --color-primary: #08103b; /* #ff9f29;*/
+  --color-primary-variant: #ff8802;
+  --color-white: #fff;
+  --color-light: #b6e0ec;
+  --color-light-variant: #c6e9f3;
+
+  --transition: all 400ms ease;
+
+  --container-width-lg: 75%; /*wrap around elements*/
+  --container-width-md: 86%;
+  --container-width-sm: 90%;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  color: var(--color-black);
+  line-height: 1.7;
+  width: 100vw;
+  max-height: 100vh;
+  background: linear-gradient(var(--color-bg), var(--color-bg-variant));
+  /*background-image: url(C:\Users\mamol\portfolio-tutorial\portfolio-site\src\assets\bg-texture.png);*/
+}
+
+
+/*** GENERAL STYLES ***/
+
+.hidden {
+  display: none;
+}
+

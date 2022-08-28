@@ -69,6 +69,5 @@ function sha512(password, salt) {
   };
 };
 
-
 const port = process.env.PORT || 5000;
 app.listen(port);

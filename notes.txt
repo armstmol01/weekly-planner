@@ -12,6 +12,9 @@ Root dir:
 Client dir:
 - package.json:
   "proxy": "http://localhost:5000"
+- dependencies/modules
+  - react-router-dom
+  - react-icons
 
 Heroku Setup
 - heroku login

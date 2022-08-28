@@ -1,0 +1,83 @@
+.login__component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.logo__container {
+  position: fixed;
+  bottom: 0;
+  z-index: -1;
+  margin-bottom: 90px; /* offset the -13rem h1 */
+}
+
+h1 {
+  color: var(--color-primary);
+  font-size: 15rem;
+  font-weight: 600;
+  opacity: 1.5%;
+  margin-top: -7rem;
+  margin-bottom: -13rem;
+}
+
+.login__container {
+  background: rgba(176,224,230, 0.3);
+  color: var(--color-primary);
+  width: 40rem;
+  height: 25rem;
+  /* border-radius: 10px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem
+}
+
+h2 {
+  padding-top: 3rem;
+}
+
+form > div {
+  width: 20rem;
+  height: 50px;
+  display: flex; /* center the input and button */
+}
+
+input {
+  border-radius: 50px;
+  width: 80%;
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 10px;
+  font-size: 15px;
+  color: var(--color-primary);
+}
+
+.login__container input::placeholder {
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+}
+
+input::-ms-clear, input::-ms-reveal {
+  display: none; /* password visible eye */
+}
+
+button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  background: whitesmoke;
+}
+
+.btn__arrow {
+  margin-top: calc(50% - 12.5px); /* center arrow in button */
+  font-size: 25px;
+}
+
+h2 {
+  font-weight: 200;
+  font-size: 5rem;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import './Login.css'
-import {BsArrowRightShort} from 'react-icons/bs'
+import {BsArrowRightShort, BsCalendar3, BsCalendar4Range} from 'react-icons/bs'
+import {AiOutlineCalendar} from 'react-icons/ai'
 
 const Login = () => {
   return (
@@ -23,6 +24,7 @@ const Login = () => {
             <button type="submit"><BsArrowRightShort className='btn__arrow'/></button>
           </div>
         </form>
+        <BsCalendar4Range className='calendar__icon'/>
       </div>
     </div>
   )

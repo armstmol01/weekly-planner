@@ -8,6 +8,7 @@
 }
 
 .logo__container {
+  display: none;
   position: fixed;
   bottom: 0;
   z-index: -1;
@@ -15,7 +16,6 @@
 }
 
 h1 {
-  color: var(--color-primary);
   font-size: 15rem;
   font-weight: 600;
   opacity: 1.5%;
@@ -24,14 +24,15 @@ h1 {
 }
 
 .login__container {
-  background: rgba(176,224,230, 0.3);
+  background: rgba(223, 246, 255, 0.9);/* rgb(210, 237, 247, 0.8);/* var(--color-light);/*rgba(176,224,230, 1) rgb(214, 238, 254, 0.8);*/
   color: var(--color-primary);
-  width: 40rem;
+  width: 50rem;
   height: 25rem;
   /* border-radius: 10px; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 50px;
   gap: 2rem
 }
 
@@ -69,7 +70,7 @@ button {
   width: 30px;
   height: 30px;
   border-radius: 50px;
-  background: whitesmoke;
+  background: var(--color-white);
 }
 
 .btn__arrow {
@@ -81,4 +82,16 @@ button {
 h2 {
   font-weight: 200;
   font-size: 5rem;
+}
+
+.calendar__icon {
+  position: fixed;
+  left: calc(50% - 5rem);
+  bottom: calc(50% - 20rem);
+  font-size: 40rem;
+  z-index: -1;
+  /* opacity: 0.8; */
+  color: rgb(198, 230, 244);/*rgb(172, 222, 244); /* rgb(191, 235, 246);*/
+  transform: rotate(10deg);
+  overflow: -moz-hidden-unscrollable;
 }

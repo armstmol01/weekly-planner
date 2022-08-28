@@ -44,7 +44,7 @@ body {
   line-height: 1.7;
   width: 100vw;
   max-height: 100vh;
-  background: linear-gradient(var(--color-bg), var(--color-bg-variant));
+  background: linear-gradient(var(--color-bg), var(--color-light));
   /*background-image: url(C:\Users\mamol\portfolio-tutorial\portfolio-site\src\assets\bg-texture.png);*/
 }
 

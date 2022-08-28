@@ -75,6 +75,7 @@ button {
 .btn__arrow {
   margin-top: calc(50% - 12.5px); /* center arrow in button */
   font-size: 25px;
+  color: var(--color-primary);
 }
 
 h2 {

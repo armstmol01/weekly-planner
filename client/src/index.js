@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import App from './App';
 import About from './components/about/About';
+import Home from './components/home/Home';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +14,7 @@ root.render(
       <Routes>
         <Route path='' element={<App />} />
         <Route path='about' element={<About />} />
-        {/* <Route path='posts' element={<Home />} /> */}
+        <Route path='home' element={<Home />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

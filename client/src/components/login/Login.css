@@ -8,7 +8,7 @@
 }
 
 .logo__container {
-  display: none;
+  /* display: none; */
   position: fixed;
   bottom: 0;
   z-index: -1;
@@ -85,6 +85,7 @@ h2 {
 }
 
 .calendar__icon {
+  display: none;
   position: fixed;
   left: calc(50% - 5rem);
   bottom: calc(50% - 20rem);

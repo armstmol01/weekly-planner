@@ -1,0 +1,33 @@
+.week__container {
+  background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+  width: 80rem;
+  height: 40rem;
+  border-radius: 20px;
+  position: absolute;
+  /* center calendar */
+  left: calc(50% - 40rem);
+  top: calc(50% - 18rem);
+}
+
+section {
+  background-color: rgb(241, 250, 255); /*whitesmoke;*/
+  border: var(--color-light) 1px solid;
+  border-radius: 10px;
+   /* 100/7 = 14.2 */
+  font-family: 'Courier New', Courier, monospace;
+  color: var(--color-primary);
+}
+
+.mon,.tue, .wed, .thu, .fri {
+  height: 30rem;
+  width: 15rem;
+}
+
+.sat, .sun {
+  height: 10rem;
+  width: 20rem;
+}

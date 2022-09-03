@@ -1,8 +1,11 @@
 import React from 'react'
 import './Home.css'
 import Nav from '../nav/Nav'
+import { useState } from 'react'
 
-const Home = () => {
+const Home = (props) => {
+  const userData = this.props.data;
+
   return (
     <>
       <Nav data='home'></Nav>

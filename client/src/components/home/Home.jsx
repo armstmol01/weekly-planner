@@ -4,7 +4,6 @@ import Nav from '../nav/Nav'
 import { useState } from 'react'
 
 const Home = (props) => {
-  const userData = this.props.data;
 
   return (
     <>

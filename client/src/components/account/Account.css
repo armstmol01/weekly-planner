@@ -1,0 +1,31 @@
+.account__container {
+  display: flex;
+  flex-direction: column;
+  gap: 15rem;
+  font-family: 'Inter', sans-serif;
+}
+
+
+.account__container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 10rem;
+  width: 100%;
+  gap: 1rem;
+}
+
+.account__container form > p {
+  font-size: 20px;
+}
+
+.account__container input {
+  width: 20%;
+  height: 30px;
+  color: var(--color-primary);
+  border-radius: 50px;
+}
+
+.account__container button {
+  width: 10%;
+}

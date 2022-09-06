@@ -12,7 +12,7 @@ const Nav = (props) => {
     <nav>
       {/* <Link to='/' id={activeNav === 'home' ? 'name' : ''} className={activeNav === 'home' ? 'home link' : 'link'}>{activeNav==='home'?'Molly\'s':<IoMdArrowRoundBack className='back-arrow-icon'/>}</Link> */}
       {activeNav === 'login' ? <Link to='/' id='name' className='link'>{'WerkWeek'}</Link> : <Link to='/' className='link'><IoMdArrowRoundBack className='back-arrow-icon'/></Link>}
-      {activeNav === 'login' || activeNav === 'about' ? <Link to='/about' className={activeNav === 'about'? 'about link' : 'link'}>about</Link> : ''}
+      {activeNav !== 'account' && activeNav !== 'home' ? <Link to='/about' className={activeNav === 'about'? 'about link' : 'link'}>about</Link> : ''}
     </nav>
   )
 }

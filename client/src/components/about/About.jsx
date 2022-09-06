@@ -4,7 +4,9 @@ import Nav from '../nav/Nav'
 
 const About = () => {
   return (
-    <Nav data='about' className='nav'></Nav>
+    <div className="about__container">
+      <Nav data='about' className='nav'></Nav>
+    </div>
   )
 }
 

@@ -7,6 +7,7 @@ function App() {
     <>
       <Nav data='login' className='nav'></Nav>
       <Login></Login>
+      <div className='chair-pattern'></div>
     </>
   );
 }

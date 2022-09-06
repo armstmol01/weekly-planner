@@ -15,6 +15,7 @@ Client dir:
 - dependencies/modules
   - react-router-dom
   - react-icons
+  - axios
 
 Heroku Setup
 - heroku login

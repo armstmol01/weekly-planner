@@ -26,16 +26,10 @@ if (process.env.NODE_ENV === "production") {
 // await db.query(qry, [access_token, refresh_token, expires_at, 90470]);
 // db.release();
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
-
 app.get('/test', async (req, res) => {
   try {
-    res.send("Hello World");
     console.log("Hello World");
+    res.send("<p>Hey Queen</p>");
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
@@ -118,27 +112,88 @@ app.get('/api/tasks', async (req, res, next) => {
 });
 
 // create new user account
-app.post('/api/new-user', async (req, res, next) => {
+app.post('/api/new-user', async function (req, res, next) {
   try {
-    const username = req.body.username;
-    const password = req.body.password;
+    let username = req.body.username;
+    let password = req.body.password;
     if (!username || !password) {
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
     }
+    let qry = 'SELECT username FROM clients WHERE username = $1';
+    let db = await pool.connect();
+    let userExists = await db.query(qry, [username]);
+
+    if (userExists) {
+      // username already exists
+      db.release();
+      return res.status(CLIENT_ERROR_CODE).send("Username already exists");
+    }
+
+    // username is unique
     // generate salt
     const salt = genSalt(3); // 3 bytes?
     // generate hashed password
     const hPassword = sha512(password, salt);
 
     // add user to database
-    let qry = 'INSERT INTO clients(username, password, salt) VALUES($1, $2, $3)';
-    let db = await pool.connect();
+    qry = 'INSERT INTO clients(username, password, salt) VALUES($1, $2, $3)';
     await db.query(qry, [username, hPassword, salt]);
+    db.release();
+    res.send('<p>Made a new user</p>');
+  } catch (err) {
+    console.error(err);
+    res.status(SERVER_ERROR_CODE).send("Failed to process request");
+  }
+});
+
+// add a new task
+app.post('/api/add-task', async (req, res, next) => {
+  try {
+    const userId = req.body.userId;
+    const day = req.body.day;
+    const taskContent = req.body.task;
+
+    if (!userId || !day || !taskContent) {
+      return res.status(CLIENT_ERROR_CODE).send("Missing body params");
+    }
+
+    // add task to database
+    let qry = 'INSERT INTO tasks(user_id, day, content) VALUES($1, $2, $3)';
+    let db = await pool.connect();
+    await db.query(qry, [userId, day, taskContent]);
     db.release();
   } catch (err) {
     console.error(err);
     res.status(SERVER_ERROR_CODE).send("Failed to process request");
   }
+});
+
+// delete existing task
+app.post('/api/delete-task', async (req, res, next) => {
+  try {
+    const userId = req.body.userId;
+    const day = req.body.day;
+    const taskContent = req.body.task;
+
+    if (!userId || !day || !taskContent) {
+      return res.status(CLIENT_ERROR_CODE).send("Missing body params");
+    }
+
+    // delete task from database
+    let qry = 'DELETE FROM tasks WHERE user_id = $1 AND day = $2 AND content = $3';
+    let db = await pool.connect();
+    await db.query(qry, [userId, day, taskContent]);
+    db.release();
+  } catch (err) {
+    console.error(err);
+    res.status(SERVER_ERROR_CODE).send("Failed to process request");
+  }
+});
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
 /**

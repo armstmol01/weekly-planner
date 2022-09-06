@@ -80,17 +80,28 @@ input::-ms-clear, input::-ms-reveal {
   display: none; /* password visible eye */
 }
 
+.username-input {
+  margin-right: 40px; /* align w/ password input */
+}
+
 button {
   width: 30px;
   height: 30px;
   border-radius: 50px;
   background: var(--color-white);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .btn__arrow {
   margin-top: calc(50% - 12.5px); /* center arrow in button */
   font-size: 25px;
   color: var(--color-primary);
+  transition: var(--transition);
+}
+
+.btn__arrow:hover {
+  color: var(--color-light);
 }
 
 h2 {

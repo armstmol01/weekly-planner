@@ -28,4 +28,9 @@
 
 .account__container button {
   width: 10%;
+  background: aliceblue;
+}
+
+.account__container button:hover {
+  background-color: var(--color-light);
 }

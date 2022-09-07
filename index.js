@@ -1,7 +1,13 @@
-'use strict';
+// 'use strict';
 const express = require('express');
 const path = require('path');
 const crypto = require('crypto');
+
+const app = express();
+
+// Parse JSON bodies for this app. Make sure you put
+// `app.use(express.json())` **before** your route handlers!
+app.use(express.json());
 
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -10,8 +16,6 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-
-const app = express();
 
 // Put all API endpoints under '/api'
 const SERVER_ERROR_CODE = 500;

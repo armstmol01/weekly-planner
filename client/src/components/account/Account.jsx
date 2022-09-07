@@ -21,9 +21,9 @@ const Account = () => {
     let pword = event.target.password.value;
 
     // create new user account
-    axios.post('/api/new-user', {
-      'username': user,
-      'password': pword
+    await axios.post('/api/new-user', {
+      username: user,
+      password: pword
     })
     .then(checkStatus)
     .then(handleNewUser) // go back to login

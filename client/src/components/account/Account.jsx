@@ -30,22 +30,25 @@ const Account = () => {
     .catch(handleError);
   };
 
-  const handleNewUser = (resp) => {
+  const handleNewUser = (res) => {
     setErrorMsg("");
-    console.log(resp);
-    navigate('login', {replace: false});
+    console.log(res);
+    navigate(-1); // return to the previous page (login)
   }
 
   const checkStatus = async (res) => {
-    if (!res.ok) {
-      let message = await res.text();
+    if (res.status !== 200) {
+      console.log(res.status);
+      let message = res.data;
+      console.log(message);
       throw new Error(message);
     }
     return res;
   }
 
   const handleError = (error) => {
-    setErrorMsg(error.message);
+    console.log(error);
+    setErrorMsg(error.data);
   }
 
 

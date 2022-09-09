@@ -2,20 +2,36 @@
 const express = require('express');
 const path = require('path');
 const crypto = require('crypto');
+require('dotenv').config();
 
 const app = express();
 
-// Parse JSON bodies for this app. Make sure you put
-// `app.use(express.json())` **before** your route handlers!
+// Parse JSON bodies for this app
 app.use(express.json());
 
 const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL || 'postgresql://postgres:8789@localhost:5432/werkweek',
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
+
+const pool = (() => {
+  if (process.env.NODE_ENV !== 'production') {
+      return new Pool({
+          connectionString: 'postgresql://postgres:8789@localhost:5432/werkweek',
+          ssl: false
+      });
+  } else {
+      return new Pool({
+          connectionString: process.env.DATABASE_URL,
+          ssl: {
+            rejectUnauthorized: false
+          }
+      });
+  } })();
 
 // Put all API endpoints under '/api'
 const SERVER_ERROR_CODE = 500;
@@ -51,7 +67,7 @@ app.get('/api/login', async (req, res, next) => {
     }
     console.log(username);
     console.log(password);
-    let qry = 'SELECT * FROM clients WHERE username = $1';
+    let qry = 'SELECT * FROM users WHERE username = $1';
     let db = await pool.connect();
     let userData = await db.query(qry, [username]); // get for 1 row, all for multiple
     db.release();
@@ -121,14 +137,17 @@ app.post('/api/new-user', async function (req, res, next) {
     let username = req.body.username;
     let password = req.body.password;
     if (!username || !password) {
+      console.log("missing params");
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
     }
-    let qry = 'SELECT username FROM clients WHERE username = $1';
+    let qry = 'SELECT username FROM users WHERE username = $1';
     let db = await pool.connect();
     let userExists = await db.query(qry, [username]);
+    console.log("user exists? " + userExists.rowCount);
 
-    if (userExists) {
+    if (userExists.rowCount !== 0) {
       // username already exists
+      console.log("user exists");
       db.release();
       return res.status(CLIENT_ERROR_CODE).send("Username already exists");
     }
@@ -137,15 +156,16 @@ app.post('/api/new-user', async function (req, res, next) {
     // generate salt
     const salt = genSalt(3); // 3 bytes?
     // generate hashed password
-    const hPassword = sha512(password, salt);
+    const hPassword = sha512(password, salt).passwordHash;
 
     // add user to database
-    qry = 'INSERT INTO clients(username, password, salt) VALUES($1, $2, $3)';
+    qry = 'INSERT INTO users(username, password, salt) VALUES($1, $2, $3)';
     await db.query(qry, [username, hPassword, salt]);
     db.release();
     res.send('<p>Made a new user</p>');
   } catch (err) {
     console.error(err);
+    console.log("500 error");
     res.status(SERVER_ERROR_CODE).send("Failed to process request");
   }
 });
@@ -218,7 +238,7 @@ function genSalt(length) {
 * @param {string} salt - Data to be validated.
 */
 function sha512(password, salt) {
-  var hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
+  var hash = crypto.createHmac('sha1', salt); /** Hashing algorithm sha512 */
   hash.update(password);
   var value = hash.digest('hex');
   return {

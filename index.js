@@ -21,7 +21,7 @@ const { Pool } = require('pg');
 const pool = (() => {
   if (process.env.NODE_ENV !== 'production') {
       return new Pool({
-          connectionString: 'postgresql://postgres:8789@localhost:5432/werkweek',
+          connectionString: 'postgresql://postgres:molly2001@localhost:5432/werkweek',
           ssl: false
       });
   } else {
@@ -149,7 +149,7 @@ app.post('/api/new-user', async function (req, res, next) {
       // username already exists
       console.log("user exists");
       db.release();
-      return res.status(CLIENT_ERROR_CODE).send("Username already exists");
+      return res.status(CLIENT_ERROR_CODE).send("User already exists");
     }
 
     // username is unique

@@ -7,6 +7,7 @@ import {BsArrowRightShort, BsCalendar3, BsCalendar4Range} from 'react-icons/bs'
 
 const Account = () => {
   const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
 
   const axios = require('axios');
@@ -25,30 +26,20 @@ const Account = () => {
       username: user,
       password: pword
     })
-    .then(checkStatus)
     .then(handleNewUser) // go back to login
     .catch(handleError);
   };
 
   const handleNewUser = (res) => {
-    setErrorMsg("");
     console.log(res);
-    navigate(-1); // return to the previous page (login)
-  }
-
-  const checkStatus = async (res) => {
-    if (res.status !== 200) {
-      console.log(res.status);
-      let message = res.data;
-      console.log(message);
-      throw new Error(message);
-    }
-    return res;
+    setErrorMsg('');
+    setSuccessMsg('Created new user! Please return to login');
+    // setTimeout(() => {navigate(-1)}, 2000); // return to the previous page (login)
   }
 
   const handleError = (error) => {
     console.log(error);
-    setErrorMsg(error.data);
+    setErrorMsg(error.response.data);
   }
 
 
@@ -57,10 +48,10 @@ const Account = () => {
       <Nav data='account' className='nav'></Nav>
       <form onSubmit={event => handleSubmit(event)}>
           <p>Enter a username and password</p>
-          <input name='username' placeholder='username'></input>
-          <input name='password' placeholder='password'></input>
+          <input name='username' placeholder='username' required></input>
+          <input name='password' placeholder='password' required></input>
           <button type="submit">Create account</button>
-          <p className='error__msg'>{errorMsg}</p>
+          {errorMsg === '' ? <p className='success__msg'>{successMsg}</p>:<p className='error__msg'>{errorMsg}</p>}
       </form>
     </div>
   )

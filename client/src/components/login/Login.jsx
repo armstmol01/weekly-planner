@@ -56,10 +56,10 @@ const Login = () => {
         <p className='error__msg'>{errorMsg}</p>
         <form onSubmit={event => handleSubmit(event)}>
           <div>
-            <input name='username' placeholder='username' className='username-input'></input>
+            <input name='username' placeholder='username' className='username-input' required></input>
           </div>
           <div>
-            <input type='password' name='password' placeholder='password'></input>
+            <input type='password' name='password' placeholder='password' required></input>
             <button type="submit"><BsArrowRightShort className='btn__arrow'/></button>
           </div>
           <p>Don't have an account? </p>

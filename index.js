@@ -74,7 +74,6 @@ app.get('/api/login', async (req, res, next) => {
 
     if (userData.rowCount === 0) {
       // user does not exist
-      // db.release();
       return res.status(CLIENT_ERROR_CODE).send("The username you've entered is incorrect");
     }
 
@@ -85,7 +84,6 @@ app.get('/api/login', async (req, res, next) => {
     let salt = userData.rows[0].salt;
     if (sha1(password, salt).passwordHash !==  userData.rows[0].password) {
       // incorrect password
-      // db.release();
       return res.status(CLIENT_ERROR_CODE).send("The password you've entered is incorrect");
     }
 
@@ -108,6 +106,7 @@ app.get('/api/tasks', async (req, res, next) => {
   try {
     const userId = req.query.id;
     if (!userId) {
+      console.log("missing body params")
       return res.status(CLIENT_ERROR_CODE).send("Missing request params");
     }
     // get tasks associated w/ user
@@ -117,7 +116,8 @@ app.get('/api/tasks', async (req, res, next) => {
     db.release();
 
     if (!taskData) {
-      return res.status(SERVER_ERROR_CODE).send("Invalid resources");
+      console.log("no tasks for user");
+      return res.status(CLIENT_ERROR_CODE).send("No tasks for user");
     }
 
     // return array of tasks for current week (days 1-7)
@@ -128,7 +128,6 @@ app.get('/api/tasks', async (req, res, next) => {
     console.log(result);
 
     res.json(result);
-    console.log(result);
   } catch (err) {
     console.log(err);
     res.status(SERVER_ERROR_CODE).send("Failed to process request");

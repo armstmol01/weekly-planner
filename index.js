@@ -60,11 +60,11 @@ app.get('/test', async (req, res) => {
 // login to user account
 app.get('/api/login', async (req, res, next) => {
   try {
-    const username = req.query.username;
-    const password = req.query.password; // stored as text in Heroku db
-    if (!username || !password) {
+    if (!req.query.username || !req.query.password) {
       return res.status(CLIENT_ERROR_CODE).send("The credentials you've entered are incorrect");
     }
+    const username = req.query.username;
+    const password = req.query.password; // stored as text in Heroku db
     console.log(username);
     console.log(password);
     let qry = 'SELECT * FROM users WHERE username = $1';
@@ -72,22 +72,26 @@ app.get('/api/login', async (req, res, next) => {
     let userData = await db.query(qry, [username]); // get for 1 row, all for multiple
     db.release();
 
-    if (!userData) {
+    if (userData.rowCount === 0) {
+      // user does not exist
       // db.release();
       return res.status(CLIENT_ERROR_CODE).send("The username you've entered is incorrect");
     }
 
+    console.log(userData.rows[0]);
+
     // validate password w/ salt and hash function
     // success if hash of given password w/ stored salt equals stored password
-    let salt = userData.salt;
-    if (sha512(password, salt) !==  userData.password) {
+    let salt = userData.rows[0].salt;
+    if (sha1(password, salt).passwordHash !==  userData.rows[0].password) {
+      // incorrect password
       // db.release();
       return res.status(CLIENT_ERROR_CODE).send("The password you've entered is incorrect");
     }
 
     // successful login
     let result = {
-      "id" : userData.id,
+      "id" : userData.rows[0].id,
       "username" : username
     };
     console.log(result);
@@ -156,7 +160,7 @@ app.post('/api/new-user', async function (req, res, next) {
     // generate salt
     const salt = genSalt(3); // 3 bytes?
     // generate hashed password
-    const hPassword = sha512(password, salt).passwordHash;
+    const hPassword = sha1(password, salt).passwordHash;
 
     // add user to database
     qry = 'INSERT INTO users(username, password, salt) VALUES($1, $2, $3)';
@@ -232,13 +236,13 @@ function genSalt(length) {
 };
 
 /**
-* hash password with sha512.
+* hash password with sha1.
 * @function
 * @param {string} password - List of required fields.
 * @param {string} salt - Data to be validated.
 */
-function sha512(password, salt) {
-  var hash = crypto.createHmac('sha1', salt); /** Hashing algorithm sha512 */
+function sha1(password, salt) {
+  var hash = crypto.createHmac('sha1', salt); /** Hashing algorithm sha1 */
   hash.update(password);
   var value = hash.digest('hex');
   return {

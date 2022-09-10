@@ -28,7 +28,7 @@ const Login = () => {
   const handleLogin = (resp) => {
     setErrorMsg("");
     console.log(resp);
-    navigate('posts', {replace: false, state: {resp}});
+    navigate('home', {replace: false, state: {resp}});
   }
 
   const checkStatus = async (res) => {

@@ -52,7 +52,7 @@ const Login = () => {
         <h1>WerkWeek</h1>
       </div> */}
       <div className='login__container'>
-        <h2>get to werk!</h2>
+        <h2 className='title'>get to werk!</h2>
         <p className='error__msg'>{errorMsg}</p>
         <form onSubmit={event => handleSubmit(event)}>
           <div>

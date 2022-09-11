@@ -2,9 +2,10 @@
 .week__container {
   background-color: transparent;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
-  gap: 0.3rem;
+  align-items: center;
+  gap: 5px;
   width: 80rem;
   height: 40rem;
   border-radius: 20px;
@@ -12,6 +13,21 @@
   /* center calendar */
   left: calc(50% - 40rem);
   top: calc(50% - 18rem);
+}
+
+.week-title {
+  margin-top: -5rem;
+  margin-left: 6rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  z-index: -1;
+  color: rgb(213, 238, 251);
+  font-size: 12rem;
+}
+
+.weekdays__container, .weekend__container {
+  display: flex;
+  gap: 5px;
 }
 
 section {
@@ -83,7 +99,17 @@ section {
 }
 
 .task p {
-  width: 100%; /* fixes the check box squishing */
+  width: 80%; /* fixes the check box squishing */
+}
+
+.task-input {
+  height: fit-content;
+  margin: 3px 0 0 0;
+  padding-left: 2px;
+  border-radius: 5px;
+  width: 80%;
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
 }
 
 .check__box {

@@ -38,10 +38,6 @@ h1 {
   backdrop-filter: blur(10px);
 }
 
-h2 {
-  padding-top: 3.5rem;
-}
-
 .login__container form {
   text-align: center;
 }
@@ -104,9 +100,10 @@ button {
   color: var(--color-light);
 }
 
-h2 {
+.title {
   font-weight: 200;
   font-size: 5rem;
+  padding-top: 3.5rem;
 }
 
 .calendar__icon {

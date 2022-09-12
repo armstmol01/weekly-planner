@@ -110,7 +110,7 @@ app.get('/api/tasks', async (req, res, next) => {
       return res.status(CLIENT_ERROR_CODE).send("Missing request params");
     }
     // get tasks associated w/ user
-    qry = 'SELECT * FROM tasks WHERE user_id = $1';
+    qry = 'SELECT day, content FROM tasks WHERE user_id = $1';
     let db = await pool.connect();
     let taskData = await db.query(qry, [userId]);
     db.release();

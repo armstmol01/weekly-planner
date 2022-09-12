@@ -1,0 +1,96 @@
+section {
+  display: flex;
+  flex-direction: column; /* must be column for + btn to be visible */
+  background-color: rgb(241, 250, 255); /*whitesmoke;*/
+  border: var(--color-light) 1px solid;
+  border-radius: 10px;
+   /* 100/7 = 14.2 */
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  color: var(--color-primary);
+  overflow: scroll;
+}
+
+.mon, .tue, .wed, .thu, .fri {
+  height: 25rem;
+  width: 15rem;
+}
+
+.sat, .sun {
+  height: 15rem;
+  width: 15rem;
+}
+
+
+.day-title {
+  position: absolute;
+  z-index: 1;
+  padding: 0 5px 0 5px;
+  border-radius: 25px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.day-title {
+  color: rgb(220, 220, 223);
+  background-color: rgb(241, 250, 255);
+  width: 200px;
+}
+
+
+.spacing {
+  height: fit-content;
+  width: 10px;
+}
+
+.fixed__btn {
+  position: absolute;
+  z-index: 2;
+  align-self: flex-end; /* fixed at right corner of week day */
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--color-light);
+}
+
+.task {
+  display: flex;
+  gap: 10px;
+  padding-left: 5px;
+}
+
+.task p {
+  width: 80%; /* fixes the check box squishing */
+}
+
+#task-input {
+  height: fit-content;
+  margin: 3px 0 0 0;
+  padding-left: 0px; /* 3px */
+  border-radius: 0; /* 5px */
+  width: 80%;
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  color: var(--color-primary);
+  border: none;
+  background-color: transparent;
+}
+
+.check__box {
+  width: 17px;
+  height: 10px;
+  border-radius: 50px;
+  border: 1px solid var(--color-light);
+  display: block;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.completed .check__box {
+  background-color: var(--color-light);
+}
+
+.completed p {
+  text-decoration-line: line-through;
+  text-decoration-thickness: 5%;
+  color: var(--color-light);
+}

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useEffect, useRef } from 'react';
 import './TaskList.css'
 import axios from 'axios'
 
@@ -7,7 +6,6 @@ const TaskList = (props) => {
   let tasks = props.data.tasks;
   let userId = props.data.userId;
   let day = props.data.day;
-  const tasksRef = useRef(tasks);
   // console.log(tasks);
 
   const deleteTask = async (event) => {
@@ -19,7 +17,7 @@ const TaskList = (props) => {
       userId: userId,
       day: day,
       task: event.currentTarget.querySelector('p').textContent
-    });
+    }).catch();
 
 
     // DELETE from tasks where day = {given day}

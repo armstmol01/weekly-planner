@@ -1,10 +1,8 @@
 import React from 'react'
 import './Home.css'
-import Nav from '../nav/Nav'
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom' // for passed in state from navigate()
-import { IoIosAdd } from 'react-icons/io'
-import { BsCheck } from 'react-icons/bs'
+import Nav from '../nav/Nav'
 import Day from '../day/Day'
 
 const Home = (props) => {
@@ -21,12 +19,7 @@ const Home = (props) => {
      .then((res) => (res.json()))
      .then(sortTasks)
      .catch(handleError);
-  }, []);
-
-  const getTasks = async () => {
-    // console.log("res");
-    // console.log(res);
-  }
+  }, []); // [] = callback function on first render
 
   const sortTasks = (res) => {
     // array of task arrays, corressponding to day
@@ -75,4 +68,4 @@ const Home = (props) => {
   )
 }
 
-export default React.memo(Home);
+export default Home; // React.memo(component)

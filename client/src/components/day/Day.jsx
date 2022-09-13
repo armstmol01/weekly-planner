@@ -5,7 +5,6 @@ import TaskList from '../taskList/TaskList'
 import { IoIosAdd } from 'react-icons/io'
 import { BsCheck } from 'react-icons/bs'
 import axios from 'axios'
-import { AiOutlineReload } from 'react-icons/ai'
 
 const Day = (props) => {
   // console.log(props.data);
@@ -13,27 +12,9 @@ const Day = (props) => {
   let id = props.data.id;
   let day = props.data.day;
   let tasks = props.data.tasks;
-  const [taskState, setTaskState] = useState(tasks);
-  // let taskList = [];
-  // const taskList = useRef([]);
   const newTask = useRef("");
-  // const [newTask, setNewTask] = useState("");
+  const [taskState, setTaskState] = useState(tasks);
   const [active, setActive] = useState(false);
-  // const [, forceUpdate] = useReducer((x) => x + 1, 0)
-  // const [updateTasks, setUpdateTasks] = useState(false);
-
-  // useEffect(() => {
-
-
-  //   setTaskList(taskState.map(({content, id}, index) => {
-  //     return (
-  //       <div className='task' key={id} onClick={handleTaskClick}>
-  //         <div className='check__box'></div>
-  //         <p>{content}</p>
-  //       </div>
-  //     );
-  //   }));
-  // }, [taskState, setTaskState]);
 
   const addTask = async () => {
     // create new user account
@@ -54,29 +35,6 @@ const Day = (props) => {
     document.getElementById('task-input').textContent = "";
   }
 
-  // function makeTaskList(tasks) {
-  //   let temp = tasks.map(({content, id}, index) => {
-  //     return (
-  //       <div className='task' key={id} onClick={handleTaskClick}>
-  //         <div className='check__box'></div>
-  //         <p>{content}</p>
-  //       </div>
-  //     );
-  //   });
-  //   return temp;
-  // }
-
-  // const handleNewUser = (res) => {
-  //   console.log(res);
-  //   setErrorMsg('');
-  //   setSuccessMsg('Created new user! Please return to login');
-  //   // setTimeout(() => {navigate(-1)}, 2000); // return to the previous page (login)
-  // }
-
-  // const handleError = (error) => {
-  //   console.log(error);
-  //   setErrorMsg(error.response.data);
-  // }
 
   return (
     <section className={title}>
@@ -88,38 +46,6 @@ const Day = (props) => {
         <input id='task-input' spellCheck='false' onChange={(event) => {newTask.current = event.target.value}}></input>
       </div>:''}
       <TaskList data={{userId: id, day: day, tasks: taskState}} />
-      {/* <div className='task'>
-        <div className='check__box'></div>
-        <p>Math 1.2-1.3 jgiggihggojfnaknadk feiowhfehiefiof ejhfeiohifhewifhei</p>
-      </div>
-      <div className='task completed'>
-        <div className='check__box'></div>
-        <p>English Essay</p>
-      </div>
-      <div className='task completed'>
-        <div className='check__box'></div>
-        <p>CSE333 Project</p>
-      </div>
-      <div className='task'>
-        <div className='check__box'></div>
-        <p>CSE484 Project</p>
-      </div>
-      <div className='task'>
-        <div className='check__box'></div>
-        <p>Math 1.2-1.3</p>
-      </div>
-      <div className='task completed'>
-        <div className='check__box'></div>
-        <p>English Essay</p>
-      </div>
-      <div className='task completed'>
-        <div className='check__box'></div>
-        <p>CSE333 Project</p>
-      </div>
-      <div className='task'>
-        <div className='check__box'></div>
-        <p>CSE484 Project</p>
-      </div> */}
     </section>
   )
 }

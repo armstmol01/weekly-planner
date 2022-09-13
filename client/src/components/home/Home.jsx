@@ -69,7 +69,7 @@ const Home = (props) => {
             <textarea className='notes-input' spellCheck='false'></textarea>
           </section>
         </div>
-      </div> : 'Loading'
+      </div> : ''
       }
     </>
   )

@@ -7,10 +7,10 @@ const TaskList = (props) => {
   let tasks = props.data.tasks;
   let userId = props.data.userId;
   let day = props.data.day;
-  console.log(tasks);
+  // console.log(tasks);
 
   const deleteTask = async (event) => {
-    console.log(event.currentTarget);
+    // console.log(event.currentTarget);
     event.currentTarget.classList.add('hidden');
 
     await axios.post('/api/delete-task', {

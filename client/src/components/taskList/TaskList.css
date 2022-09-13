@@ -4,6 +4,7 @@
   padding-left: 5px;
   min-height: 25px;
   min-height: fit-content;
+  cursor: pointer;
 }
 
 .task p {

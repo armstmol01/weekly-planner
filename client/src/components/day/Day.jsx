@@ -1,61 +1,69 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useReducer } from 'react'
 import './Day.css'
+import TaskList from '../taskList/TaskList'
 import { IoIosAdd } from 'react-icons/io'
 import { BsCheck } from 'react-icons/bs'
 import axios from 'axios'
+import { AiOutlineReload } from 'react-icons/ai'
 
 const Day = (props) => {
+  // console.log(props.data);
   let title = props.data.title;
   let id = props.data.id;
   let day = props.data.day;
   let tasks = props.data.tasks;
+  const [taskState, setTaskState] = useState(tasks);
+  // let taskList = [];
+  // const taskList = useRef([]);
   const [newTask, setNewTask] = useState("");
-  const [taskList, setTaskList] = useState([]);
   const [active, setActive] = useState(false);
+  // const [, forceUpdate] = useReducer((x) => x + 1, 0)
+  // const [updateTasks, setUpdateTasks] = useState(false);
 
-  useEffect(() => {
-    makeTaskList(tasks);
-  }, []);
+  // useEffect(() => {
+
+
+  //   setTaskList(taskState.map(({content, id}, index) => {
+  //     return (
+  //       <div className='task' key={id} onClick={handleTaskClick}>
+  //         <div className='check__box'></div>
+  //         <p>{content}</p>
+  //       </div>
+  //     );
+  //   }));
+  // }, [taskState, setTaskState]);
 
   const addTask = async () => {
     // create new user account
-    await axios.post('/api/new-user', {
+    await axios.post('/api/add-task', {
       userId: id,
       day: day,
-      task: newTask
+      task: document.getElementById('task-input').value
     })
-    .then(displayNewTask(newTask)) // go back to login
+    .then(updateTasks(document.getElementById('task-input').value)) // go back to login
     .catch(setActive(false));
   }
 
-  const displayNewTask = (taskContent) => {
+  const updateTasks = (taskContent) => {
     setActive(false);
-    let currTaskList = taskList;
-    let newKey = taskList.length;
-    currTaskList.push(
-      <div className='task' key={newKey}>
-        <div className='check__box'></div>
-        <p>{taskContent}</p>
-      </div>
-    );
-    setTaskList(currTaskList);
-    // reset input
-    let input = document.getElementById('task-input');
-    input.textContent = '';
+    let temp = taskState;
+    temp.unshift({id: temp.length + 1, user_id: id, day: day, content: taskContent});
+    setTaskState(temp);
+    document.getElementById('task-input').textContent = "";
   }
 
-  function makeTaskList(tasks) {
-    let temp = tasks.map(({day, content}, index) => {
-      return (
-        <div className='task' key={index}>
-          <div className='check__box'></div>
-          <p>{content}</p>
-        </div>
-      );
-    });
-    setTaskList(temp);
-  }
+  // function makeTaskList(tasks) {
+  //   let temp = tasks.map(({content, id}, index) => {
+  //     return (
+  //       <div className='task' key={id} onClick={handleTaskClick}>
+  //         <div className='check__box'></div>
+  //         <p>{content}</p>
+  //       </div>
+  //     );
+  //   });
+  //   return temp;
+  // }
 
   // const handleNewUser = (res) => {
   //   console.log(res);
@@ -76,9 +84,10 @@ const Day = (props) => {
       <div className='spacing'><br></br></div>
       {active===true?<div className='task new-task'>
         <div className='check__box'></div>
-        <input id='task-input' spellCheck='false' onChange={(event) => {setNewTask(event.target.value)}}></input>
+        <input id='task-input' spellCheck='false'></input>
       </div>:''}
-      <div className='task'>
+      <TaskList data={{userId: id, day: day, tasks: taskState}} />
+      {/* <div className='task'>
         <div className='check__box'></div>
         <p>Math 1.2-1.3 jgiggihggojfnaknadk feiowhfehiefiof ejhfeiohifhewifhei</p>
       </div>
@@ -109,9 +118,9 @@ const Day = (props) => {
       <div className='task'>
         <div className='check__box'></div>
         <p>CSE484 Project</p>
-      </div>
+      </div> */}
     </section>
   )
 }
 
-export default Day
+export default Day;

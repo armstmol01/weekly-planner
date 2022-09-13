@@ -110,7 +110,7 @@ app.get('/api/tasks', async (req, res, next) => {
       return res.status(CLIENT_ERROR_CODE).send("Missing request params");
     }
     // get tasks associated w/ user
-    qry = 'SELECT day, content FROM tasks WHERE user_id = $1';
+    qry = 'SELECT * FROM tasks WHERE user_id = $1 ORDER BY day, id';
     let db = await pool.connect();
     let taskData = await db.query(qry, [userId]);
     db.release();
@@ -179,6 +179,7 @@ app.post('/api/add-task', async (req, res, next) => {
     const userId = req.body.userId;
     const day = req.body.day;
     const taskContent = req.body.task;
+    console.log(req.body);
 
     if (!userId || !day || !taskContent) {
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
@@ -188,6 +189,7 @@ app.post('/api/add-task', async (req, res, next) => {
     let qry = 'INSERT INTO tasks(user_id, day, content) VALUES($1, $2, $3)';
     let db = await pool.connect();
     await db.query(qry, [userId, day, taskContent]);
+    console.log('added new task');
     db.release();
   } catch (err) {
     console.error(err);
@@ -203,6 +205,7 @@ app.post('/api/delete-task', async (req, res, next) => {
     const taskContent = req.body.task;
 
     if (!userId || !day || !taskContent) {
+      console.log("missing body params");
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
     }
 
@@ -211,6 +214,7 @@ app.post('/api/delete-task', async (req, res, next) => {
     let db = await pool.connect();
     await db.query(qry, [userId, day, taskContent]);
     db.release();
+    console.log("deleted task");
   } catch (err) {
     console.error(err);
     res.status(SERVER_ERROR_CODE).send("Failed to process request");

@@ -1,0 +1,35 @@
+.task {
+  display: flex;
+  gap: 10px;
+  padding-left: 5px;
+  min-height: 25px;
+  min-height: fit-content;
+}
+
+.task p {
+  width: 80%; /* fixes the check box squishing */
+}
+
+.check__box {
+  width: 17px;
+  height: 10px;
+  border-radius: 50px;
+  border: 1px solid var(--color-light);
+  display: block;
+  cursor: pointer;
+  margin-top: 8.5px;
+}
+
+.completed .check__box {
+  background-color: var(--color-light);
+}
+
+.completed p {
+  text-decoration-line: line-through;
+  text-decoration-thickness: 5%;
+  color: var(--color-light);
+}
+
+.hidden {
+  display: none;
+}

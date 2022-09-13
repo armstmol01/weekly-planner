@@ -16,7 +16,8 @@ const Day = (props) => {
   const [taskState, setTaskState] = useState(tasks);
   // let taskList = [];
   // const taskList = useRef([]);
-  const [newTask, setNewTask] = useState("");
+  const newTask = useRef("");
+  // const [newTask, setNewTask] = useState("");
   const [active, setActive] = useState(false);
   // const [, forceUpdate] = useReducer((x) => x + 1, 0)
   // const [updateTasks, setUpdateTasks] = useState(false);
@@ -39,9 +40,9 @@ const Day = (props) => {
     await axios.post('/api/add-task', {
       userId: id,
       day: day,
-      task: document.getElementById('task-input').value
+      task: newTask.current // document.getElementById('task-input').value
     })
-    .then(updateTasks(document.getElementById('task-input').value)) // go back to login
+    .then(updateTasks(newTask.current)) // go back to login
     .catch(setActive(false));
   }
 
@@ -84,7 +85,7 @@ const Day = (props) => {
       <div className='spacing'><br></br></div>
       {active===true?<div className='task new-task'>
         <div className='check__box'></div>
-        <input id='task-input' spellCheck='false'></input>
+        <input id='task-input' spellCheck='false' onChange={(event) => {newTask.current = event.target.value}}></input>
       </div>:''}
       <TaskList data={{userId: id, day: day, tasks: taskState}} />
       {/* <div className='task'>

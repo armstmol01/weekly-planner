@@ -25,11 +25,30 @@ const TaskList = (props) => {
     // make async!
   }
 
+  const checkTask = async (task, checkedStatus) => { // task = event.currentTarget
+    task.classList.add('hidden');
+    delete tasks[task.id]; // using index as id so we can delete task by index
+
+    await axios.post('/api/check-task', {
+      userId: userId,
+      day: day,
+      task: task.querySelector('p').textContent,
+      checkedStatus: checkedStatus
+    }).catch();
+
+
+    // DELETE from tasks where day = {given day}
+    // AND content = {given content} OR id = {given id}
+    // make async!
+  }
+
   // app.post checked = true vs false???
   const handleTaskClick = (event) => {
     switch (event.detail) {
       case 1: {
         event.currentTarget.classList.toggle('completed');
+        let checkedStatus = event.currentTarget.classList.contains('completed');
+        checkTask(event.currentTarget, checkedStatus);
         break;
       }
       case 2: {
@@ -42,10 +61,17 @@ const TaskList = (props) => {
     }
   }
 
+
+
   return (
-    tasks.map(({content, id}, index) => {
+    tasks.map(({content, checked, id}, index) => {
+      let cName = 'task';
+      if (checked) {
+        cName += ' completed';
+      }
+
       return (
-        <div className='task' id={index} key={index} onClick={handleTaskClick}>
+        <div className={cName} id={index} key={index} onClick={handleTaskClick}>
           <div className='check__box'></div>
           <p>{content}</p>
         </div>

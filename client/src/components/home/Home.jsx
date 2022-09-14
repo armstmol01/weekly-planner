@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom' // for passed in state from navigate()
 import Nav from '../nav/Nav'
 import Day from '../day/Day'
+var moment = require('moment');
 
 const Home = (props) => {
   const location = useLocation();
@@ -44,7 +45,7 @@ const Home = (props) => {
   return (
     <>
       <Nav data='home'></Nav>
-      <h2 className='week-title'>this week</h2>
+      <h2 className='week-title'>{moment().format('dddd').toLowerCase()}</h2>
       {loaded?
       <div className="week__container">
         <div className='weekdays__container'>

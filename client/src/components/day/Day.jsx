@@ -18,6 +18,12 @@ const Day = (props) => {
 
   const addTask = async () => {
     // create new user account
+    if (!newTask.current.trim().length) {
+      newTask.current = "";
+      setActive(false);
+      return;
+    }
+
     await axios.post('/api/add-task', {
       userId: id,
       day: day,

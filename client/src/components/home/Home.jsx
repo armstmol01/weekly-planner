@@ -1,26 +1,50 @@
 import React from 'react'
 import './Home.css'
-import { useState, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom' // for passed in state from navigate()
 import Nav from '../nav/Nav'
 import Day from '../day/Day'
+import axios from 'axios'
 var moment = require('moment');
 
 const Home = (props) => {
   const location = useLocation();
   const userData = location.state.resp;
+  const notes = useRef("");
   const [loaded, setLoaded] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [notes, setNotes] = useState(false);
   const [tasks, setTasks] = useState([[], [], [], [], [], [], []]);
 
   useEffect(() => {
-    let url = "/api/tasks?id=" + userData.id;
-    fetch(url)
+    let urlTasks = "/api/tasks?id=" + userData.id;
+    fetch(urlTasks)
      .then((res) => (res.json()))
      .then(sortTasks)
      .catch(handleError);
+    let urlNotes = "/api/notes?id=" + userData.id;
+    fetch(urlNotes)
+     .then((res) => (res.json()))
+     .then(setNotes)
+     .catch(handleError);
+     window.onbeforeunload = saveNotes;
+     return () => {
+      window.onbeforeunload("null")
+     };
   }, []); // [] = callback function on first render
+
+  const saveNotes = async () => {
+    console.log("SAVING NOTES");
+    await axios.post('/api/save-notes', {
+      userId: userData.id,
+      notes: notes.current
+    })
+    .catch(handleError);
+  }
+
+  const setNotes = (res) => {
+    notes.current = res.notes;
+    // document.getElementById('notesbox').value = res.notes;
+  }
 
   const sortTasks = (res) => {
     // array of task arrays, corressponding to day
@@ -37,9 +61,11 @@ const Home = (props) => {
   }
 
   const handleError = (error) => {
-    console.log(error);
+    // console.log(error);
     setLoaded(false);
-    setErrorMsg(error.response.data);
+    if (error.response) {
+      setErrorMsg(error.response.data);
+    }
   }
 
   return (
@@ -60,7 +86,7 @@ const Home = (props) => {
           <Day data={{id: userData.id, day: 7, tasks: tasks[6], title: 'sun'}} />
           <section className='notes'>
             <p className='notes-title'>Notes</p>
-            <textarea className='notes-input' spellCheck='false'></textarea>
+            <textarea id='notesbox' className='notes-input' spellCheck='false' defaultValue={notes.current} onChange={(event) => {notes.current = event.currentTarget.value}}></textarea>
           </section>
         </div>
       </div> : ''

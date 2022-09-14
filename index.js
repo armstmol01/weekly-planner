@@ -186,9 +186,9 @@ app.post('/api/add-task', async (req, res, next) => {
     }
 
     // add task to database
-    let qry = 'INSERT INTO tasks(user_id, day, content) VALUES($1, $2, $3)'; // explicitly say checked = false??
+    let qry = 'INSERT INTO tasks(user_id, day, content, checked) VALUES($1, $2, $3, $4)'; // explicitly say checked = false??
     let db = await pool.connect();
-    await db.query(qry, [userId, day, taskContent]);
+    await db.query(qry, [userId, day, taskContent, false]);
     console.log('added new task');
     db.release();
   } catch (err) {
@@ -211,7 +211,7 @@ app.post('/api/check-task', async (req, res, next) => {
     console.log(req.body);
 
     // add task to database
-    let qry = 'UPDATE tasks SET checked = $1 WHERE user_id = $2 AND day = $3 AND content = $4'; // explicitly say checked = false??
+    let qry = 'UPDATE tasks SET checked = $1 WHERE user_id = $2 AND day = $3 AND content = $4';
     let db = await pool.connect();
     await db.query(qry, [checked, userId, day, taskContent]);
     console.log('updated checked attribute for given task(s)');
@@ -286,10 +286,10 @@ app.get('/api/notes', async (req, res, next) => {
 app.post('/api/save-notes', async (req, res, next) => {
   try {
     const userId = req.body.userId;
-    const notesContent = req.body.notes;
+    const notesContent = req.body.notes || "";
     console.log(req.body);
 
-    if (!userId || !notesContent) {
+    if (!userId) {
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
     }
 
@@ -316,7 +316,7 @@ app.post('/api/delete-week', async (req, res, next) => {
 
     // add or update notes for given user
     let notesContent = '';
-    let notesQry = 'UPDATE notes SET content = $1 WHERE user_id = $2'; // explicitly say checked = false??
+    let notesQry = 'UPDATE notes SET content = $1 WHERE user_id = $2';
     let tasksQry = 'DELETE FROM tasks WHERE user_id = $2';
     let db = await pool.connect();
     await db.query([notesQry, tasksQry], [notesContent, userId]);

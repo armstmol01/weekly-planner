@@ -26,9 +26,6 @@ const TaskList = (props) => {
   }
 
   const checkTask = async (task, checkedStatus) => { // task = event.currentTarget
-    task.classList.add('hidden');
-    delete tasks[task.id]; // using index as id so we can delete task by index
-
     await axios.post('/api/check-task', {
       userId: userId,
       day: day,

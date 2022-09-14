@@ -186,10 +186,35 @@ app.post('/api/add-task', async (req, res, next) => {
     }
 
     // add task to database
-    let qry = 'INSERT INTO tasks(user_id, day, content) VALUES($1, $2, $3)';
+    let qry = 'INSERT INTO tasks(user_id, day, content) VALUES($1, $2, $3)'; // explicitly say checked = false??
     let db = await pool.connect();
     await db.query(qry, [userId, day, taskContent]);
     console.log('added new task');
+    db.release();
+  } catch (err) {
+    console.error(err);
+    res.status(SERVER_ERROR_CODE).send("Failed to process request");
+  }
+});
+
+// add a new task
+app.post('/api/check-task', async (req, res, next) => {
+  try {
+    if (!req.body.userId || !req.body.day || !req.body.task || !req.body.checkedStatus) {
+      return res.status(CLIENT_ERROR_CODE).send("Missing body params");
+    }
+
+    const userId = req.body.userId;
+    const day = req.body.day;
+    const taskContent = req.body.task;
+    const checked = req.body.checkedStatus;
+    console.log(req.body);
+
+    // add task to database
+    let qry = 'UPDATE tasks SET checked = $1 WHERE user_id = $2 AND day = $3 AND content = $4'; // explicitly say checked = false??
+    let db = await pool.connect();
+    await db.query(qry, [checked, userId, day, taskContent]);
+    console.log('updated checked attribute for given task(s)');
     db.release();
   } catch (err) {
     console.error(err);
@@ -220,6 +245,88 @@ app.post('/api/delete-task', async (req, res, next) => {
     res.status(SERVER_ERROR_CODE).send("Failed to process request");
   }
 });
+
+// get tasks for specified user
+app.get('/api/notes', async (req, res, next) => {
+  try {
+    if (!req.query.id) {
+      console.log("missing body params")
+      return res.status(CLIENT_ERROR_CODE).send("Missing request params");
+    }
+
+    const userId = req.query.id;
+    // get tasks associated w/ user
+    qry = 'SELECT content FROM notes WHERE user_id = $1';
+    let db = await pool.connect();
+    let notesData = await db.query(qry, [userId]);
+    db.release();
+
+    let result = {'notes': ''}
+
+    if (notesData.rowCount === 0) {
+      res.json(result);
+      return;
+    }
+
+    // return array of tasks for current week (days 1-7)
+    result = {
+      'notes': notesData.rows[0].content
+    }
+
+    console.log(result);
+
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(SERVER_ERROR_CODE).send("Failed to process request");
+  }
+});
+
+// save notes to database
+app.post('/api/save-notes', async (req, res, next) => {
+  try {
+    const userId = req.body.userId;
+    const notesContent = req.body.notes;
+    console.log(req.body);
+
+    if (!userId || !notesContent) {
+      return res.status(CLIENT_ERROR_CODE).send("Missing body params");
+    }
+
+    // add or update notes for given user
+    let qry = 'INSERT INTO notes(user_id, content) VALUES($1, $2) ON CONFLICT (user_id) DO UPDATE SET content = $2';
+    let db = await pool.connect();
+    await db.query(qry, [userId, notesContent]);
+    console.log('added new task');
+    db.release();
+  } catch (err) {
+    console.error(err);
+    res.status(SERVER_ERROR_CODE).send("Failed to process request");
+  }
+});
+
+app.post('/api/delete-week', async (req, res, next) => {
+  try {
+    const userId = req.body.userId;
+    console.log(req.body);
+
+    if (!userId) {
+      return res.status(CLIENT_ERROR_CODE).send("Missing body params");
+    }
+
+    // add or update notes for given user
+    let notesContent = '';
+    let notesQry = 'UPDATE notes SET content = $1 WHERE user_id = $2'; // explicitly say checked = false??
+    let tasksQry = 'DELETE FROM tasks WHERE user_id = $2';
+    let db = await pool.connect();
+    await db.query([notesQry, tasksQry], [notesContent, userId]);
+    console.log('cleared week');
+    db.release();
+  } catch (err) {
+    console.error(err);
+    res.status(SERVER_ERROR_CODE).send("Failed to process request");
+  }
+})
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

@@ -41,7 +41,6 @@ const Day = (props) => {
     document.getElementById('task-input').textContent = "";
   }
 
-
   return (
     <section className={title}>
       {active===false?<IoIosAdd className='fixed__btn' onClick={() => {setActive(true)}}/>:<BsCheck className='fixed__btn' onClick={() => {addTask()}}/>}

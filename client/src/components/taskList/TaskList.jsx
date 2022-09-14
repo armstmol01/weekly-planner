@@ -25,6 +25,7 @@ const TaskList = (props) => {
     // make async!
   }
 
+  // app.post checked = true vs false???
   const handleTaskClick = (event) => {
     switch (event.detail) {
       case 1: {

@@ -34,7 +34,7 @@ h1 {
   padding-top: 1rem;
   align-items: center;
   border-radius: 50px;
-  gap: 1rem;
+  gap: 2rem;
   backdrop-filter: blur(10px);
 }
 
@@ -117,6 +117,11 @@ button {
   color: rgb(198, 230, 244);/*rgb(172, 222, 244); /* rgb(191, 235, 246);*/
   transform: rotate(10deg);
   overflow: -moz-hidden-unscrollable;
+}
+
+.error__msg {
+  position: fixed; /*so doesn't affect other elems around it*/
+  top: calc(50% - 3rem);
 }
 
 .hidden {

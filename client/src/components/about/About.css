@@ -1,0 +1,38 @@
+.about__container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  color: var(--color-primary);
+}
+
+.direction__container {
+  margin-top: 5rem;
+  font-size: 2rem;
+}
+
+.icon__container, .github-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.github-link {
+  margin-top: 1rem;
+  font-size: 1rem;
+  padding-left: 5px;
+  color: var(--color-primary);
+  transition: var(--transition);
+  gap: 5px
+}
+
+.github-link:hover {
+  color: rgb(108, 201, 238);
+}
+
+.demo {
+  border-radius: 20px;
+  width: 30%;
+  margin-top: 40px;
+}

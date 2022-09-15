@@ -12,7 +12,7 @@ const Home = (props) => {
   const userData = location.state.resp;
   const notes = useRef("");
   const [loaded, setLoaded] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("Ok");
   const [tasks, setTasks] = useState([[], [], [], [], [], [], []]);
 
   useEffect(() => {

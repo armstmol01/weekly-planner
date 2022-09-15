@@ -14,7 +14,7 @@ const About = () => {
       <Nav data='about' className='nav'></Nav>
       <div className="about__container">
         <div className='direction__container'>
-          <h3>Enjoy this simple planner <br></br>to help you manage your week!</h3>
+          <h3>Enjoy this simple planner <br></br>to help you manage your week</h3>
           <div className='icon__container'>
             <IoIosAdd/>
             <p>create task</p></div>

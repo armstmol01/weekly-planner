@@ -1,7 +1,7 @@
 import React from 'react'
 import './About.css'
 import Nav from '../nav/Nav'
-import DEMO from '../../assets/werkweekdemo.gif'
+import DEMO from '../../assets/werkweekdemo2.gif'
 import { IoIosAdd } from 'react-icons/io'
 import { BsCheck } from 'react-icons/bs'
 import { GrGithub } from 'react-icons/gr'
@@ -14,7 +14,7 @@ const About = () => {
       <Nav data='about' className='nav'></Nav>
       <div className="about__container">
         <div className='direction__container'>
-          <h3>Enjoy this simple planner <br></br>to help you manage your week</h3>
+          <h3>Enjoy this simple planner <br></br>to help manage your week</h3>
           <div className='icon__container'>
             <IoIosAdd/>
             <p>create task</p></div>

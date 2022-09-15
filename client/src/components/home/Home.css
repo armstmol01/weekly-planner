@@ -13,6 +13,21 @@
   /* center calendar */
   left: calc(50% - 40rem);
   top: calc(50% - 18rem);
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  color: var(--color-primary);
+}
+
+.clear-btn {
+  align-self: flex-end;
+  padding-right: 2rem;
+  color: var(--color-light);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.clear-btn:hover {
+  color: rgb(165, 210, 242);
 }
 
 .week-title {
@@ -37,9 +52,6 @@ section {
   border: var(--color-light) 1px solid;
   border-radius: 10px;
    /* 100/7 = 14.2 */
-  font-family: 'Inter', sans-serif;
-  font-weight: 200;
-  color: var(--color-primary);
   overflow: scroll;
 }
 

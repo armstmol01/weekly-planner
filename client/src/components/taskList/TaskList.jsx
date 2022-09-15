@@ -45,6 +45,11 @@ const TaskList = (props) => {
       case 1: {
         event.currentTarget.classList.toggle('completed');
         let checkedStatus = event.currentTarget.classList.contains('completed');
+        // this fixes the checked bug after adding a task!
+        // since props aren't changed/no new fetch call when we add a task
+        // the .completed is associated w/ index not the task itself, so we have to make
+        // sure to update props whenever a task is checked
+        tasks[event.currentTarget.id].checked = event.currentTarget.classList.contains('completed');
         checkTask(event.currentTarget, checkedStatus);
         break;
       }
@@ -66,6 +71,11 @@ const TaskList = (props) => {
       if (checked) {
         cName += ' completed';
       }
+      // let keys = [];
+      // let keyPool = tasks.length;
+      // for (let i = 0; i < tasks.length; i++) {
+      //   keys.push(i * tasks.length);
+      // }
 
       return (
         <div className={cName} id={index} key={index} onClick={handleTaskClick}>

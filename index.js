@@ -317,10 +317,11 @@ app.post('/api/delete-week', async (req, res, next) => {
     // add or update notes for given user
     let notesContent = '';
     let notesQry = 'UPDATE notes SET content = $1 WHERE user_id = $2';
-    let tasksQry = 'DELETE FROM tasks WHERE user_id = $2';
+    let tasksQry = 'DELETE FROM tasks WHERE user_id = $1';
     let db = await pool.connect();
-    await db.query([notesQry, tasksQry], [notesContent, userId]);
-    console.log('cleared week');
+    await db.query(notesQry, [notesContent, userId]);
+    await db.query(tasksQry, [userId]);
+    console.log('deleted week');
     db.release();
   } catch (err) {
     console.error(err);

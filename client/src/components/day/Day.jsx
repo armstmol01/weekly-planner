@@ -29,7 +29,7 @@ const Day = (props) => {
       day: day,
       task: newTask.current // document.getElementById('task-input').value
     })
-    .then(updateTasks(newTask.current)) // go back to login
+    .then(updateTasks(newTask.current))
     .catch(setActive(false));
   }
 

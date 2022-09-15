@@ -6,7 +6,7 @@ import { IoIosAdd } from 'react-icons/io'
 import { BsCheck } from 'react-icons/bs'
 import { GrGithub } from 'react-icons/gr'
 
-const style = {display: 'inline'};
+// const style = {display: 'inline'};
 
 const About = () => {
   return (

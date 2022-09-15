@@ -11,8 +11,8 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(event.target.username.value);
-    console.log(event.target.password.value);
+    // console.log(event.target.username.value);
+    // console.log(event.target.password.value);
     setErrorMsg("");
 
     // request user data
@@ -27,7 +27,7 @@ const Login = () => {
 
   const handleLogin = (resp) => {
     setErrorMsg("");
-    console.log(resp);
+    // console.log(resp);
     navigate('home', {replace: false, state: {resp}});
   }
 

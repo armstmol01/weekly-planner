@@ -18,7 +18,6 @@ const Day = (props) => {
 
   const addTask = async () => {
     // create new task
-    console.log(newTask.current.trim().length);
     if (!newTask.current.trim().length) {
       newTask.current = "";
       setActive(false);

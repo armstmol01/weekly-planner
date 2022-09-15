@@ -46,7 +46,7 @@ const Home = (props) => {
   }
 
   const saveNotes = async () => {
-    console.log("SAVING NOTES");
+    // console.log("SAVING NOTES");
     await axios.post('/api/save-notes', {
       userId: userData.id,
       notes: notes.current
@@ -84,9 +84,9 @@ const Home = (props) => {
   const handleError = (error) => {
     // console.log(error);
     setLoaded(false);
-    console.log(error);
+    // console.log(error);
     if (error.response) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
       setErrorMsg(error.response.data);
     }
   }

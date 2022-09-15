@@ -71,11 +71,6 @@ const TaskList = (props) => {
       if (checked) {
         cName += ' completed';
       }
-      // let keys = [];
-      // let keyPool = tasks.length;
-      // for (let i = 0; i < tasks.length; i++) {
-      //   keys.push(i * tasks.length);
-      // }
 
       return (
         <div className={cName} id={index} key={index} onClick={handleTaskClick}>

@@ -17,7 +17,8 @@ const Day = (props) => {
   const [active, setActive] = useState(false);
 
   const addTask = async () => {
-    // create new user account
+    // create new task
+    console.log(newTask.current.trim().length);
     if (!newTask.current.trim().length) {
       newTask.current = "";
       setActive(false);
@@ -35,6 +36,8 @@ const Day = (props) => {
 
   const updateTasks = (taskContent) => {
     setActive(false);
+    // important in case that user adds an empty task by newTask is still value of previous
+    newTask.current = "";
     let temp = taskState;
     temp.unshift({id: temp.length + 1, user_id: id, day: day, content: taskContent});
     setTaskState(temp);

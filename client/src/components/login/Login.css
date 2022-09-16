@@ -119,7 +119,7 @@ button {
   overflow: -moz-hidden-unscrollable;
 }
 
-.error__msg {
+.login__container .error__msg {
   position: fixed; /*so doesn't affect other elems around it*/
   top: calc(50% - 3rem);
 }

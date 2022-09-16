@@ -2,8 +2,7 @@ import React from 'react'
 import './Login.css'
 import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import {BsArrowRightShort, BsCalendar3, BsCalendar4Range} from 'react-icons/bs'
-import {AiOutlineCalendar} from 'react-icons/ai'
+import {BsArrowRightShort} from 'react-icons/bs'
 
 const Login = () => {
   const [errorMsg, setErrorMsg] = useState("");

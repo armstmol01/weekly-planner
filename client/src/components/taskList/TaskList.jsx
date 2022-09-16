@@ -9,7 +9,6 @@ const TaskList = (props) => {
   // console.log(tasks);
 
   const deleteTask = async (event) => {
-    // console.log(event.currentTarget);
     event.currentTarget.classList.add('hidden');
     delete tasks[event.currentTarget.id]; // using index as id so we can delete task by index
 
@@ -18,30 +17,17 @@ const TaskList = (props) => {
       day: day,
       task: event.currentTarget.querySelector('p').textContent
     }).catch();
-
-
-    // DELETE from tasks where day = {given day}
-    // AND content = {given content} OR id = {given id}
-    // make async!
   }
 
   const checkTask = async (task, checkedStatus) => { // task = event.currentTarget
-    console.log("status: " + checkedStatus);
-    console.log("content: " + task.querySelector('p').textContent);
     await axios.post('/api/check-task', {
       userId: userId,
       day: day,
       task: task.querySelector('p').textContent,
       checkedStatus: checkedStatus
     }).catch();
-
-
-    // DELETE from tasks where day = {given day}
-    // AND content = {given content} OR id = {given id}
-    // make async!
   }
 
-  // app.post checked = true vs false???
   const handleTaskClick = (event) => {
     switch (event.detail) {
       case 1: {
@@ -50,7 +36,7 @@ const TaskList = (props) => {
         // this fixes the checked bug after adding a task!
         // since props aren't changed/no new fetch call when we add a task
         // the .completed is associated w/ index not the task itself, so we have to make
-        // sure to update props whenever a task is checked
+        // sure to update props whenever a task is checked so .completed will "belong" to the task
         tasks[event.currentTarget.id].checked = event.currentTarget.classList.contains('completed');
         checkTask(event.currentTarget, checkedStatus);
         break;
@@ -64,8 +50,6 @@ const TaskList = (props) => {
       }
     }
   }
-
-
 
   return (
     tasks.map(({content, checked, id}, index) => {

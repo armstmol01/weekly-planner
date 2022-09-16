@@ -1,22 +1,16 @@
 import React from 'react'
 import './Account.css'
 import { useState } from 'react';
-import {useNavigate } from "react-router-dom"
 import Nav from '../nav/Nav'
-import {BsArrowRightShort, BsCalendar3, BsCalendar4Range} from 'react-icons/bs'
 
 const Account = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
-  const navigate = useNavigate();
 
   const axios = require('axios');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("new user");
-    console.log(event.target.username.value);
-    console.log(event.target.password.value);
     setErrorMsg("");
     let user = event.target.username.value.toLowerCase();
     let pword = event.target.password.value;
@@ -31,17 +25,16 @@ const Account = () => {
   };
 
   const handleNewUser = (res) => {
-    console.log(res);
+    // console.log(res);
     setErrorMsg('');
     setSuccessMsg('Created new user! Please return to login');
     // setTimeout(() => {navigate(-1)}, 2000); // return to the previous page (login)
   }
 
   const handleError = (error) => {
-    console.log(error);
+    // console.log(error);
     setErrorMsg(error.response.data);
   }
-
 
   return (
     <div className="account__container">

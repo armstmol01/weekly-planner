@@ -1,7 +1,7 @@
 import React from 'react'
 import './Home.css'
 import { useState, useRef, useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom' // for passed in state from navigate()
+import { useLocation } from 'react-router-dom' // for passed in state from navigate()
 import Nav from '../nav/Nav'
 import Day from '../day/Day'
 import axios from 'axios'
@@ -12,7 +12,7 @@ const Home = (props) => {
   const userData = location.state.resp;
   const notes = useRef("");
   const [loaded, setLoaded] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("Ok");
+  const [errorMsg, setErrorMsg] = useState("");
   const [tasks, setTasks] = useState([[], [], [], [], [], [], []]);
   const [keys, setKeys] = useState([0, 7, 14, 28, 35, 42, 49]); // keys can't conflict w/ eachother
 
@@ -41,13 +41,15 @@ const Home = (props) => {
     .catch(handleError);
     // clear tasks (update keys to rerender Day components)
     setTasks([[], [], [], [], [], [], []]);
-    // notes.current = "";
+    // clear notes
+    document.getElementById("notesbox").value = "";
+    notes.current = "";
+    // update week display
     RenderDays();
   }
 
   const saveNotes = async (notesContent) => {
     // console.log("SAVING NOTES");
-    // console.log("notes value to save: " + notes);
     await axios.post('/api/save-notes', {
       userId: userData.id,
       notes: notesContent || "" // notes.current
@@ -68,8 +70,6 @@ const Home = (props) => {
     for (let i = 0; i < tasks.length; i++) {
       week[tasks[i].day - 1].unshift(tasks[i]); // indices 0 - 6 hold days 1 - 7
     }
-    // console.log(week);
-    // console.log(week[0]);
     setLoaded(true);
     setTasks(week);
   }
@@ -85,10 +85,11 @@ const Home = (props) => {
   const handleError = (error) => {
     // console.log(error);
     setLoaded(false);
-    // console.log(error);
     if (error.response) {
       // console.log(error.response.data);
       setErrorMsg(error.response.data);
+    } else {
+      setErrorMsg("Failed to load resources");
     }
   }
 
@@ -114,7 +115,7 @@ const Home = (props) => {
             <textarea id='notesbox' className='notes-input' spellCheck='false' defaultValue={notes.current} onBlur={(event) => saveNotes(event.currentTarget.value)}></textarea>
           </section>
         </div>
-      </div> : ''
+      </div> : <p>{errorMsg}</p>
       }
     </>
   )

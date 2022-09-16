@@ -121,7 +121,8 @@ button {
 
 .login__container .error__msg {
   position: fixed; /*so doesn't affect other elems around it*/
-  top: calc(50% - 3rem);
+  top: calc(50% - 40px);
+  font-size: 16px;
 }
 
 .hidden {

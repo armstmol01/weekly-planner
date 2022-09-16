@@ -26,6 +26,8 @@ const TaskList = (props) => {
   }
 
   const checkTask = async (task, checkedStatus) => { // task = event.currentTarget
+    console.log("status: " + checkedStatus);
+    console.log("content: " + task.querySelector('p').textContent);
     await axios.post('/api/check-task', {
       userId: userId,
       day: day,

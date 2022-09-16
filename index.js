@@ -200,7 +200,10 @@ app.post('/api/add-task', async (req, res, next) => {
 // add a new task
 app.post('/api/check-task', async (req, res, next) => {
   try {
-    if (!req.body.userId || !req.body.day || !req.body.task || !req.body.checkedStatus) {
+    // bug when checkedStatus = 'false' since !checkedStatus evaluates to true, or "missing"
+    if (!req.body.userId || !req.body.day || !req.body.task || req.body.checkedStatus === null) {
+      console.log("missing body");
+      console.log(req.body);
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
     }
 
@@ -286,6 +289,7 @@ app.get('/api/notes', async (req, res, next) => {
 app.post('/api/save-notes', async (req, res, next) => {
   try {
     const userId = req.body.userId;
+    console.log("notes: " + req.body.notes);
     const notesContent = req.body.notes || "";
     console.log(req.body);
 

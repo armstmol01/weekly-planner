@@ -27,10 +27,10 @@ const Home = (props) => {
      .then((res) => (res.json()))
      .then(setNotes)
      .catch(handleError);
-     window.onbeforeunload = saveNotes;
-     return () => {
-      window.onbeforeunload("null")
-     };
+    //  window.onbeforeunload = saveNotes;
+    //  return () => {
+    //   window.onbeforeunload("null")
+    //  };
   }, []); // [] = callback function on first render
 
   const clearWeek = async () => {
@@ -41,15 +41,16 @@ const Home = (props) => {
     .catch(handleError);
     // clear tasks (update keys to rerender Day components)
     setTasks([[], [], [], [], [], [], []]);
-    notes.current = "";
+    // notes.current = "";
     RenderDays();
   }
 
-  const saveNotes = async () => {
+  const saveNotes = async (notesContent) => {
     // console.log("SAVING NOTES");
+    // console.log("notes value to save: " + notes);
     await axios.post('/api/save-notes', {
       userId: userData.id,
-      notes: notes.current
+      notes: notesContent || "" // notes.current
     })
     .catch(handleError);
   }
@@ -110,7 +111,7 @@ const Home = (props) => {
           <Day data={{id: userData.id, day: 7, tasks: tasks[6], title: 'sun'}} key={keys[6]}/>
           <section className='notes'>
             <p className='notes-title'>Notes</p>
-            <textarea id='notesbox' className='notes-input' spellCheck='false' defaultValue={notes.current} onChange={(event) => {notes.current = event.currentTarget.value}}></textarea>
+            <textarea id='notesbox' className='notes-input' spellCheck='false' defaultValue={notes.current} onBlur={(event) => saveNotes(event.currentTarget.value)}></textarea>
           </section>
         </div>
       </div> : ''

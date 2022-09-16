@@ -30,7 +30,7 @@ const Home = () => {
     // notes will display correctly
     // instead of sometimes rendering when notes.current = ""
     // (its initial value)
-    setLoaded(true);
+
     //  window.onbeforeunload = saveNotes;
     //  return () => {
     //   window.onbeforeunload("null")
@@ -75,6 +75,7 @@ const Home = () => {
       week[tasks[i].day - 1].unshift(tasks[i]); // indices 0 - 6 hold days 1 - 7
     }
     setTasks(week);
+    setLoaded(true);
   }
 
   const RenderDays = () => {

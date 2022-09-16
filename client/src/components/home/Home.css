@@ -88,3 +88,14 @@ section {
   color: var(--color-primary);
   font-size: 16px;
 }
+
+.home__container .error__container {
+  width: 100%;
+  text-align: center;
+}
+
+.home__container .error__msg {
+  font-family: 'Inter', sans-serif;
+  color: var(--color-primary);
+  font-size: 25px;
+}

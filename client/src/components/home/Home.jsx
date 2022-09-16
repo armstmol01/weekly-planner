@@ -94,10 +94,10 @@ const Home = (props) => {
   }
 
   return (
-    <>
+    <div className='home__container'>
       <Nav data='home'></Nav>
       <h2 className='week-title'>{moment().format('dddd').toLowerCase()}</h2>
-      {loaded?
+      {loaded ?
       <div className="week__container">
         <p className='clear-btn' onClick={clearWeek}>clear</p>
         <div className='weekdays__container'>
@@ -115,9 +115,12 @@ const Home = (props) => {
             <textarea id='notesbox' className='notes-input' spellCheck='false' defaultValue={notes.current} onBlur={(event) => saveNotes(event.currentTarget.value)}></textarea>
           </section>
         </div>
-      </div> : <p>{errorMsg}</p>
+      </div> :
+      <div className='error__container'>
+        <p className='error__msg'>{errorMsg}</p>
+      </div>
       }
-    </>
+    </div>
   )
 }
 

@@ -7,14 +7,14 @@ import Day from '../day/Day'
 import axios from 'axios'
 var moment = require('moment');
 
-const Home = (props) => {
+const Home = () => {
   const location = useLocation();
   const userData = location.state.resp;
   const notes = useRef("");
   const [loaded, setLoaded] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [tasks, setTasks] = useState([[], [], [], [], [], [], []]);
-  const [keys, setKeys] = useState([0, 7, 14, 28, 35, 42, 49]); // keys can't conflict w/ eachother
+  const [keys, setKeys] = useState([0, 7, 14, 28, 35, 42, 49]); // keys won't conflict w/ eachother
 
   useEffect(() => {
     let urlTasks = "/api/tasks?id=" + userData.id;
@@ -27,6 +27,10 @@ const Home = (props) => {
      .then((res) => (res.json()))
      .then(setNotes)
      .catch(handleError);
+    // notes will display correctly
+    // instead of sometimes rendering when notes.current = ""
+    // (its initial value)
+    setLoaded(true);
     //  window.onbeforeunload = saveNotes;
     //  return () => {
     //   window.onbeforeunload("null")
@@ -70,7 +74,6 @@ const Home = (props) => {
     for (let i = 0; i < tasks.length; i++) {
       week[tasks[i].day - 1].unshift(tasks[i]); // indices 0 - 6 hold days 1 - 7
     }
-    setLoaded(true);
     setTasks(week);
   }
 

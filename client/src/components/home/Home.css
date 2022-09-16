@@ -13,17 +13,17 @@
   /* center calendar */
   left: calc(50% - 40rem);
   top: calc(50% - 20rem);
-  font-family: 'Inter', sans-serif;
-  font-weight: 200;
-  color: var(--color-primary);
+  /*
+  color: var(--color-primary); */
 }
 
 .clear-btn {
   align-self: flex-end;
   padding-right: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
   color: var(--color-light);
   cursor: pointer;
-  transition: var(--transition);
 }
 
 .clear-btn:hover {

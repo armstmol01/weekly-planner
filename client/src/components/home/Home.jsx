@@ -63,6 +63,7 @@ const Home = () => {
 
   const setNotes = (res) => {
     notes.current = res.notes;
+    setLoaded(true);
     // document.getElementById('notesbox').value = res.notes;
   }
 
@@ -75,7 +76,7 @@ const Home = () => {
       week[tasks[i].day - 1].unshift(tasks[i]); // indices 0 - 6 hold days 1 - 7
     }
     setTasks(week);
-    setLoaded(true);
+    // setLoaded(true);
   }
 
   const RenderDays = () => {

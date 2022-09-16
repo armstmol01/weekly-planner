@@ -18,7 +18,7 @@ const Account = () => {
     console.log(event.target.username.value);
     console.log(event.target.password.value);
     setErrorMsg("");
-    let user = event.target.username.value;
+    let user = event.target.username.value.toLowerCase();
     let pword = event.target.password.value;
 
     // create new user account

@@ -16,7 +16,7 @@ const Login = () => {
     setErrorMsg("");
 
     // request user data
-    let url = '/api/login?username=' + event.target.username.value
+    let url = '/api/login?username=' + event.target.username.value.toLowerCase()
               + '&password=' + event.target.password.value;
     fetch(url)
       .then(checkStatus)

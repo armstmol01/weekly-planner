@@ -11,7 +11,8 @@ const Home = () => {
   const location = useLocation();
   const userData = location.state.resp;
   const notes = useRef("");
-  const [loaded, setLoaded] = useState(false);
+  const [loadedTasks, setLoadedTasks] = useState(false);
+  const [loadedNotes, setLoadedNotes] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [tasks, setTasks] = useState([[], [], [], [], [], [], []]);
   const [keys, setKeys] = useState([0, 7, 14, 28, 35, 42, 49]); // keys won't conflict w/ eachother
@@ -63,7 +64,7 @@ const Home = () => {
 
   const setNotes = (res) => {
     notes.current = res.notes;
-    setLoaded(true);
+    setLoadedNotes(true);
     // document.getElementById('notesbox').value = res.notes;
   }
 
@@ -76,7 +77,7 @@ const Home = () => {
       week[tasks[i].day - 1].unshift(tasks[i]); // indices 0 - 6 hold days 1 - 7
     }
     setTasks(week);
-    setLoaded(true);
+    setLoadedTasks(true);
   }
 
   const RenderDays = () => {
@@ -89,7 +90,8 @@ const Home = () => {
 
   const handleError = (error) => {
     // console.log(error);
-    setLoaded(false);
+    setLoadedTasks(false);
+    setLoadedNotes(false);
     if (error.response) {
       // console.log(error.response.data);
       setErrorMsg(error.response.data);
@@ -102,7 +104,7 @@ const Home = () => {
     <div className='home__container'>
       <Nav data='home'></Nav>
       <h2 className='week-title'>{moment().format('dddd').toLowerCase()}</h2>
-      {loaded ?
+      {loadedTasks && loadedNotes ?
       <div className="week__container">
         <p className='clear-btn' onClick={clearWeek}>clear</p>
         <div className='weekdays__container'>

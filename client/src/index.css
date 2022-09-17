@@ -42,9 +42,8 @@ html {
 body {
   color: var(--color-black);
   line-height: 1.7;
-  width: 100vw;
-  max-height: 100vh;
-  background: linear-gradient(var(--color-bg), var(--color-light));
+  height: max-content;
+  overflow-y: scroll;
   /*background-image: url(C:\Users\mamol\portfolio-tutorial\portfolio-site\src\assets\bg-texture.png);*/
 }
 

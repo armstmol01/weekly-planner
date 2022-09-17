@@ -96,3 +96,16 @@ section {
   text-decoration-thickness: 5%;
   color: var(--color-light);
 }
+
+/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
+@media screen and (max-height: 850px) {
+  .mon, .tue, .wed, .thu, .fri {
+    height: 20rem;
+    width: 15rem;
+  }
+
+  .sat, .sun {
+    height: 12rem;
+    width: 15rem;
+  }
+}

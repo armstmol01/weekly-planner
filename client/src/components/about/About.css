@@ -5,11 +5,13 @@
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   color: var(--color-primary);
+  height: fit-content;
 }
 
 .direction__container {
   margin-top: 5rem;
   font-size: 2rem;
+  margin-bottom: 5rem;
 }
 
 .icon__container, .github-link {
@@ -33,6 +35,27 @@
 
 .demo {
   border-radius: 20px;
-  width: 500px;
+  width: 30%;
+  height: 30%;
   margin-top: 40px;
+}
+
+/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
+@media screen and (max-height: 850px) {
+  .demo {
+    height: 23%;
+    height: 23%;
+  }
+
+  .direction__container {
+    margin-top: 2.5rem;
+  }
+}
+
+/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
+@media screen and (max-height: 720px) {
+  .demo {
+    height: 22.5%;
+    width: 22.5%;
+  }
 }

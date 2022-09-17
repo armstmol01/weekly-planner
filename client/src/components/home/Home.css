@@ -1,3 +1,7 @@
+/* .week__component {
+  max-height: ;
+} */
+
 .week__container {
   background-color: transparent;
   display: flex;
@@ -5,7 +9,7 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 80rem;
+  width: 100%;
   height: fit-content;
   border-radius: 20px;
   margin: 2rem auto 2rem auto;
@@ -100,16 +104,44 @@ section {
   font-size: 25px;
 }
 
-/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
+/* ===== MEDIA QUERIES (SHORT SCREENS) ===== */
 @media screen and (max-height: 800px) {
   .week__container {
     margin-top: 1rem;
   }
 }
 
-/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
 @media screen and (max-height: 720px) {
   .week__container {
     margin-top: 0;
+  }
+}
+
+/* ===== MEDIA QUERIES (PHONES) ===== */
+@media screen and (max-width: 600px) {
+  .weekdays__container, .weekend__container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .notes {
+    width: 90vw;
+    min-height: 10rem;
+    max-height: fit-content;
+  }
+
+  .notes-title {
+    width: 9rem;
+  }
+
+  .week-title {
+    margin-top: -1rem;
+    margin-left: 2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    z-index: -1;
+    color: rgb(213, 238, 251);
+    font-size: 3rem;
+    position: absolute;
   }
 }

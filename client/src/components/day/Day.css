@@ -96,7 +96,7 @@ section {
   color: var(--color-light);
 }
 
-/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
+/* ===== MEDIA QUERIES (SHORT SCREENS) ===== */
 @media screen and (max-height: 800px) {
   .mon, .tue, .wed, .thu, .fri {
     height: 50vh;
@@ -109,7 +109,6 @@ section {
   }
 }
 
-/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
 @media screen and (max-height: 720px) {
   .mon, .tue, .wed, .thu, .fri {
     height: 47vh;
@@ -119,5 +118,18 @@ section {
   .sat, .sun {
     height: 28vh;
     width: 15rem;
+  }
+}
+
+/* ===== MEDIA QUERIES (PHONES) ===== */
+@media screen and (max-width: 600px) {
+  .mon, .tue, .wed, .thu, .fri {
+    max-height: 5rem;
+    width: 90vw;
+  }
+
+  .sat, .sun {
+    height: 5rem;
+    width: 90vw;
   }
 }

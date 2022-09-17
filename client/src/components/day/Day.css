@@ -21,7 +21,6 @@ section {
   width: 15rem;
 }
 
-
 .day-title {
   position: absolute;
   z-index: 1;
@@ -98,14 +97,27 @@ section {
 }
 
 /* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
-@media screen and (max-height: 850px) {
+@media screen and (max-height: 800px) {
   .mon, .tue, .wed, .thu, .fri {
-    height: 20rem;
+    height: 50vh;
     width: 15rem;
   }
 
   .sat, .sun {
-    height: 12rem;
+    height: 25vh;
+    width: 15rem;
+  }
+}
+
+/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
+@media screen and (max-height: 720px) {
+  .mon, .tue, .wed, .thu, .fri {
+    height: 47vh;
+    width: 15rem;
+  }
+
+  .sat, .sun {
+    height: 28vh;
     width: 15rem;
   }
 }

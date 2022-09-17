@@ -8,7 +8,7 @@
   width: 80rem;
   height: fit-content;
   border-radius: 20px;
-  margin: 2rem auto auto auto;
+  margin: 2rem auto 2rem auto;
   /* position: absolute; */
   /* center calendar */
   left: calc(50% - 40rem);
@@ -98,4 +98,18 @@ section {
   font-family: 'Inter', sans-serif;
   color: var(--color-primary);
   font-size: 25px;
+}
+
+/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
+@media screen and (max-height: 800px) {
+  .week__container {
+    margin-top: 1rem;
+  }
+}
+
+/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
+@media screen and (max-height: 720px) {
+  .week__container {
+    margin-top: 0;
+  }
 }

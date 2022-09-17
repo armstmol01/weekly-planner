@@ -40,7 +40,7 @@
   margin-top: 40px;
 }
 
-/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
+/* ===== MEDIA QUERIES (SHORT SCREENS) ===== */
 @media screen and (max-height: 850px) {
   .demo {
     height: 23%;
@@ -52,10 +52,30 @@
   }
 }
 
-/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
 @media screen and (max-height: 720px) {
   .demo {
     height: 22.5%;
     width: 22.5%;
   }
+}
+
+
+/* ===== MEDIA QUERIES (PHONES) ===== */
+@media screen and (max-width: 850px) {
+  .about__container {
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+  }
+
+  .direction__container {
+    margin: 1rem;
+  }
+
+  .demo {
+    height: 22.5%;
+    width: 80vw;
+    margin: 0.5rem 0;
+  }
+
 }

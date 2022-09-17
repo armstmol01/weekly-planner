@@ -139,10 +139,24 @@ button {
   }
 }
 
-/* ===== MEDIA QUERIES (SMALL DEVICES) ===== */
 @media screen and (max-height: 650px) {
   .login__container {
     margin-top: 2.5%;
     height: 28rem;
+  }
+}
+
+/* ===== MEDIA QUERIES (PHONES) ===== */
+@media screen and (max-width: 850px) {
+  .title {
+    font-size: 3rem;
+    padding-top: 0;
+  }
+
+  .login__container {
+    width: 90%;
+    max-height: 90vh;
+    min-height: fit-content;
+    padding: 2rem 0;
   }
 }

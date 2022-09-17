@@ -150,13 +150,13 @@ button {
 @media screen and (max-width: 850px) {
   .title {
     font-size: 3rem;
-    padding-top: 0;
+    padding-top: 2rem;
   }
 
   .login__container {
     width: 90%;
-    max-height: 90vh;
+    max-height: 50vh;
     min-height: fit-content;
-    padding: 2rem 0;
+    padding: 0;
   }
 }

@@ -36,7 +36,6 @@ section {
   width: 200px;
 }
 
-
 .spacing {
   height: fit-content;
   width: 10px;
@@ -122,14 +121,31 @@ section {
 }
 
 /* ===== MEDIA QUERIES (PHONES) ===== */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1300px) {
   .mon, .tue, .wed, .thu, .fri {
-    max-height: 5rem;
+    width: 10rem;
+  }
+
+  .sat, .sun {
+    width: 10rem;
+  }
+
+  .day-title {
+    width: 9rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .mon, .tue, .wed, .thu, .fri {
+    max-height: 9rem;
     width: 90vw;
   }
 
   .sat, .sun {
-    height: 5rem;
+    height: 9rem;
     width: 90vw;
   }
 }
+
+/* @media screen and (max-width: 600px) {
+} */

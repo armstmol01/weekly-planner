@@ -9,20 +9,20 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 100%;
+  width: fit-content;
   height: fit-content;
   border-radius: 20px;
   margin: 2rem auto 2rem auto;
   /* position: absolute; */
   /* center calendar */
-  left: calc(50% - 40rem);
+
    /*
   color: var(--color-primary); */
 }
 
 .clear-btn {
   align-self: flex-end;
-  padding-right: 2rem;
+  /* padding-right: 2rem; */
   font-family: 'Inter', sans-serif;
   font-weight: 200;
   color: var(--color-light);
@@ -118,7 +118,7 @@ section {
 }
 
 /* ===== MEDIA QUERIES (PHONES) ===== */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 850px) {
   .weekdays__container, .weekend__container {
     flex-direction: column;
     align-items: center;
@@ -135,13 +135,17 @@ section {
   }
 
   .week-title {
+    margin-top: -3rem;
+    margin-left: 5rem;
+    font-size: 5rem;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .week-title {
     margin-top: -1rem;
     margin-left: 2rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 200;
-    z-index: -1;
-    color: rgb(213, 238, 251);
     font-size: 3rem;
-    position: absolute;
   }
 }

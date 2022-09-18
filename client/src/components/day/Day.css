@@ -25,15 +25,13 @@ section {
   position: absolute;
   z-index: 1;
   padding: 0 5px 0 5px;
-  border-radius: 25px;
+  border-radius: 12px 12px 0 0;
   font-size: 14px;
   text-transform: capitalize;
-}
-
-.day-title {
   color: rgb(220, 220, 223);
   background-color: rgb(241, 250, 255);
-  width: 200px;
+  width: 14.5rem;
+  overflow-x: hidden;
 }
 
 .spacing {
@@ -48,6 +46,8 @@ section {
   cursor: pointer;
   font-size: 20px;
   color: var(--color-light);
+  /* background-color: rgb(241, 250, 255);
+  border-radius: 25px; */
 }
 
 .task {
@@ -99,29 +99,39 @@ section {
 @media screen and (max-height: 800px) {
   .mon, .tue, .wed, .thu, .fri {
     height: 50vh;
-    width: 15rem;
   }
 
   .sat, .sun {
     height: 25vh;
-    width: 15rem;
   }
 }
 
 @media screen and (max-height: 720px) {
   .mon, .tue, .wed, .thu, .fri {
     height: 47vh;
-    width: 15rem;
   }
 
   .sat, .sun {
     height: 28vh;
-    width: 15rem;
   }
 }
 
 /* ===== MEDIA QUERIES (PHONES) ===== */
 @media screen and (max-width: 1300px) {
+  .mon, .tue, .wed, .thu, .fri {
+    width: 12rem;
+  }
+
+  .sat, .sun {
+    width: 12rem;
+  }
+
+  .day-title {
+    width: 11.9rem;
+  }
+}
+
+@media screen and (max-width: 1030px) {
   .mon, .tue, .wed, .thu, .fri {
     width: 10rem;
   }
@@ -131,9 +141,10 @@ section {
   }
 
   .day-title {
-    width: 9rem;
+    width: 9.9rem;
   }
 }
+
 
 @media screen and (max-width: 850px) {
   .mon, .tue, .wed, .thu, .fri {
@@ -144,6 +155,10 @@ section {
   .sat, .sun {
     height: 9rem;
     width: 90vw;
+  }
+
+  .day-title {
+    width: 89.6vw;
   }
 }
 

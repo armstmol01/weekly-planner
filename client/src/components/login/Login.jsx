@@ -57,7 +57,7 @@ const Login = () => {
           <div>
             <input name='username' placeholder='username' className='username-input' required></input>
           </div>
-          <div>
+          <div className='password__box'>
             <input type='password' name='password' placeholder='password' required></input>
             <button type="submit"><BsArrowRightShort className='btn__arrow'/></button>
           </div>

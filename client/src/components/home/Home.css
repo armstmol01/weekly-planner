@@ -68,14 +68,11 @@ section {
   position: absolute;
   z-index: 1;
   padding: 0 5px 0 5px;
-  border-radius: 25px;
   font-size: 14px;
-}
-
-.notes-title {
   color: rgb(165, 210, 242); /*var(--color-light);*/
   background-color: rgb(217, 242, 255);
-  width: 450px;
+  width: 29.9rem; /* hide scrolling notes */
+  border-radius: 12px 12px 0 0;
 }
 
 .notes-input {
@@ -131,7 +128,7 @@ section {
   }
 
   .notes-title {
-    width: 9rem;
+    width: 89.6vw; /* hide scrolling notes */
   }
 
   .week-title {

@@ -70,6 +70,7 @@
 
   .direction__container {
     margin: 1rem;
+    font-size: 1.2rem;
   }
 
   .demo {
@@ -77,5 +78,4 @@
     width: 80vw;
     margin: 0.5rem 0;
   }
-
 }

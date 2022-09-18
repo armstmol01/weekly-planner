@@ -73,7 +73,7 @@ input, .login__container input::placeholder, button {
   font-family: 'Inter', sans-serif;
 }
 
-input, button {
+input {
   border: 1px solid var(--color-light);
 }
 
@@ -99,15 +99,16 @@ button {
   width: 30px;
   height: 30px;
   border-radius: 50px;
-  background: var(--color-white);
+  background: transparent;/* var(--color-white);*/
   cursor: pointer;
   transition: var(--transition);
+  border: 1px solid rgb(82, 160, 198);
 }
 
 .btn__arrow {
   margin-top: calc(50% - 12.5px); /* center arrow in button */
   font-size: 25px;
-  color: var(--color-primary);
+  color: rgb(82, 160, 198);
   transition: var(--transition);
 }
 
@@ -196,7 +197,6 @@ button {
     /* margin-top: calc(50% - 12.5px); center arrow in button */
     margin-top: 1px;
     font-size: 25px;
-    color: var(--color-primary);
     transition: var(--transition);
   }
 }

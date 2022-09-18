@@ -28,13 +28,11 @@ h1 {
   border: 0px solid var(--color-light);
   color: var(--color-primary);
   width: 60rem;
-  /* width: fit-content; */
+  max-width: 80vw;
   height: fit-content;
-  padding: 2rem 0 4rem 0;
-  /* border-radius: 10px; */
+  padding: 3rem 0 5rem 0;
   display: flex;
   flex-direction: column;
-  /* padding-top: 1rem; */
   margin: 8% 0 1rem 0;
   align-items: center;
   border-radius: 50px;
@@ -107,7 +105,6 @@ button {
 .title {
   font-weight: 200;
   font-size: 5rem;
-  /* padding-top: 3.5rem; */
 }
 
 .calendar__icon {

@@ -46,6 +46,7 @@ h1 {
 
 .login__container p {
   display: inline;
+  font-weight: 300;
 }
 
 /* .login__container form > div {

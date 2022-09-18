@@ -86,9 +86,10 @@ input {
   margin-right: 10px;
   color: var(--color-primary);
   transition: var(--transition);
+  background: white;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

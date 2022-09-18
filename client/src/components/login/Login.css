@@ -48,10 +48,23 @@ h1 {
   display: inline;
 }
 
-.login__container form > div {
+/* .login__container form > div {
   width: 20rem;
   height: 50px;
   display: flex; /* center the input and button */
+  /*justify-content: center;
+} */
+
+.input__container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.password__box {
+  display: flex;
   justify-content: center;
 }
 
@@ -66,7 +79,7 @@ input, button {
 
 input {
   border-radius: 50px;
-  width: 80%;
+  width: 18rem;
   height: 30px;
   padding-left: 10px;
   padding-right: 10px;
@@ -78,9 +91,8 @@ input::-ms-clear, input::-ms-reveal {
   display: none; /* password visible eye */
 }
 
-.username-input {
-  margin-right: 40px; /* align w/ password input */
-}
+/* .username-input {
+  margin-right: 0px; /* align w/ password input */
 
 button {
   width: 30px;
@@ -134,14 +146,13 @@ button {
 @media screen and (max-height: 850px) {
   .login__container {
     margin-top: 5%;
-    height: 28rem;
+    height: fit-content;
   }
 }
 
 @media screen and (max-height: 650px) {
   .login__container {
     margin-top: 2.5%;
-    height: 28rem;
   }
 }
 
@@ -154,9 +165,41 @@ button {
   .login__container {
     width: 90%;
     min-width: fit-content;
-    height: fit-content;
     margin-top: 2rem;
+    padding: 2rem 0 3rem 0;
   }
+
+  .input__container {
+    align-items: center;
+  }
+
+  .password__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  input {
+    width: 12rem;
+    margin: 0;
+  }
+
+  .password__box button {
+    width: 2rem;
+    background-color: transparent;
+    border-color: rgb(82, 160, 198);
+  }
+
+  .btn__arrow {
+    /* margin-top: calc(50% - 12.5px); center arrow in button */
+    margin-top: 1px;
+    font-size: 25px;
+    color: var(--color-primary);
+    transition: var(--transition);
+  }
+
+
 
   /* .password__box {
     display: flex;

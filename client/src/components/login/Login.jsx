@@ -54,12 +54,14 @@ const Login = () => {
         <h2 className='title'>get to werk!</h2>
         <p className='error__msg'>{errorMsg}</p>
         <form onSubmit={event => handleSubmit(event)}>
-          <div>
-            <input name='username' placeholder='username' className='username-input' required></input>
-          </div>
-          <div className='password__box'>
-            <input type='password' name='password' placeholder='password' required></input>
-            <button type="submit"><BsArrowRightShort className='btn__arrow'/></button>
+          <div className='input__container'>
+            <div>
+              <input name='username' placeholder='username' className='username-input' required></input>
+            </div>
+            <div className='password__box'>
+              <input type='password' name='password' placeholder='password' required></input>
+              <button type="submit"><BsArrowRightShort className='btn__arrow'/></button>
+            </div>
           </div>
           <p>Don't have an account? </p>
           <Link to='/account' className='account-link'>Sign up</Link>

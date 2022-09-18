@@ -26,7 +26,7 @@ body {
 @media screen and (max-width: 850px) {
   .chair-pattern {
     background: url('assets/chairpattern.png');
-    background-size: 130%;
+    background-size: 160%;
     background-repeat: repeat;
   }
 }

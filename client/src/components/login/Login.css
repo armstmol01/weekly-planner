@@ -172,8 +172,8 @@ button {
   }
 
   .login__container {
-    width: 90%;
-    min-width: fit-content;
+    min-width: 90%;
+    max-width: fit-content;
     margin-top: 2rem;
     padding: 2rem 0 3rem 0;
   }

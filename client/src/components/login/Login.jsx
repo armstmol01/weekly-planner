@@ -56,7 +56,7 @@ const Login = () => {
         <form onSubmit={event => handleSubmit(event)}>
           <div className='input__container'>
             <div>
-              <input name='username' placeholder='username' className='username-input' required></input>
+              <input type='text' name='username' placeholder='username' className='username-input' required></input>
             </div>
             <div className='password__box'>
               <input type='password' name='password' placeholder='password' required></input>

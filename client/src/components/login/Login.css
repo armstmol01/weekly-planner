@@ -75,9 +75,6 @@ input, .login__container input::placeholder, button {
 
 input {
   border: 1px solid var(--color-light);
-}
-
-input {
   border-radius: 50px;
   width: 18rem;
   height: 30px;

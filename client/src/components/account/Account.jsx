@@ -41,8 +41,8 @@ const Account = () => {
       <Nav data='account' className='nav'></Nav>
       <form onSubmit={event => handleSubmit(event)}>
           <p>Enter a username and password</p>
-          <input name='username' placeholder='username' required></input>
-          <input name='password' placeholder='password' required></input>
+          <input name='username' placeholder='username' type='text' required></input>
+          <input name='password' placeholder='password' type='text' required></input>
           <button type="submit">Create account</button>
           {errorMsg === '' ? <p className='success__msg'>{successMsg}</p>:<p className='error__msg'>{errorMsg}</p>}
       </form>

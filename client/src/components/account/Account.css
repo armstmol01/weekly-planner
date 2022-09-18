@@ -27,7 +27,14 @@
   height: 30px;
   color: var(--color-primary);
   border-radius: 50px;
+  background: white;
 }
+
+/* input[type=text] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+} */
 
 .account__container button {
   width: fit-content;
@@ -37,7 +44,7 @@
 }
 
 .account__container button:hover {
-  background-color: var(--color-light);
+  color: var(--color-light);
 }
 
 /* ===== MEDIA QUERIES (PHONES) ===== */

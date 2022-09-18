@@ -85,7 +85,13 @@ input {
   padding-right: 10px;
   margin-right: 10px;
   color: var(--color-primary);
-  box-shadow: none !important;
+  transition: var(--transition);
+}
+
+input[type=text] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 input::-ms-clear, input::-ms-reveal {
@@ -135,9 +141,10 @@ button {
 }
 
 .login__container .error__msg {
-  position: fixed; /*so doesn't affect other elems around it*/
-  top: calc(50% - 40px);
+  position: absolute; /*so doesn't affect other elems around it*/
+  top: calc(50% - 30px);
   font-size: 16px;
+  font-weight: 300;
 }
 
 .hidden {
@@ -198,6 +205,10 @@ button {
     margin-top: 1px;
     font-size: 25px;
     transition: var(--transition);
+  }
+
+  .login__container .error__msg {
+    top: calc(50% - 65px);
   }
 }
 

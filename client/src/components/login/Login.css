@@ -36,7 +36,7 @@ h1 {
   margin: 8% 0 1rem 0;
   align-items: center;
   border-radius: 50px;
-  gap: 0.5rem;
+  gap: 0rem;
   backdrop-filter: blur(10px);
 }
 
@@ -124,7 +124,7 @@ button {
 
 .title {
   font-weight: 200;
-  font-size: 5rem;
+  font-size: 4.5rem;
 }
 
 .calendar__icon {
@@ -142,10 +142,11 @@ button {
 
 .login__container .error__msg {
   /* position: absolute; so doesn't affect other elems around it */
-  top: calc(50% - 30px);
-  font-size: 14px;
+  /* top: calc(50% - 30px); */
+  font-size: 16px;
   font-weight: 300;
   height: 18px;
+  margin-bottom: 10px;
   width: 100%;
   text-align: center;
 }
@@ -171,7 +172,7 @@ button {
 /* ===== MEDIA QUERIES (PHONES) ===== */
 @media screen and (max-width: 850px) {
   .title {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .login__container {
@@ -211,7 +212,14 @@ button {
   }
 
   .login__container .error__msg {
-    top: calc(50% - 65px);
+    /* top: calc(50% - 65px); */
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 2rem;
   }
 }
 

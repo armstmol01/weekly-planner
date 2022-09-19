@@ -83,22 +83,27 @@ const Home = () => {
   }
 
   const getWeekDates = () => {
-    let curr = new Date();
     let week = [];
-    console.log(curr.getDay());
+    // Sunday before--our version of--the week begins
+    let day = moment().startOf('week');
 
-    for (let i = 0; i < 7; i++) {
-      let first = (curr.getDate() - 1) - curr.getDay() + i;
-      let day = new Date(curr.setDate(first)).toISOString().slice(5, 10);
-      if (day.slice(0, 1) === '0') {
-        day = day.slice(1);
-      }
-      console.log(day);
-      week.push(day);
+    // if today is Sunday, we want to display it
+    // and the previous week
+    if (moment().weekday() === 0) {
+      // start week w/ prev Monday to current Sunday
+      day = day.subtract(7, 'days');
     }
 
-    // let sunday = week.shift;
-    // week.push(sunday);
+    // calculate the dates of the 7 day week
+    for (let i = 0; i < 7; i++) {
+      day = day.add(1, 'days');
+      let dateString = day.format('MM-DD');
+      // if 09-11 display 9-11
+      if (dateString.slice(0, 1) === '0') {
+        dateString = dateString.slice(1);
+      }
+      week.push(dateString);
+    }
 
     return week;
   }
@@ -131,15 +136,15 @@ const Home = () => {
       <div className="week__container">
         <p className='clear-btn' onClick={clearWeek}>clear</p>
         <div className='weekdays__container'>
-          <Day data={{id: userData.id, day: 1, tasks: tasks[0], title: 'mon ' + weekDates.current[1]}} key={keys[0]} />
-          <Day data={{id: userData.id, day: 2, tasks: tasks[1], title: 'tue ' + weekDates.current[2]}} key={keys[1]}/>
-          <Day data={{id: userData.id, day: 3, tasks: tasks[2], title: 'wed ' + weekDates.current[3]}} key={keys[2]}/>
-          <Day data={{id: userData.id, day: 4, tasks: tasks[3], title: 'thu ' + weekDates.current[4]}} key={keys[3]}/>
-          <Day data={{id: userData.id, day: 5, tasks: tasks[4], title: 'fri ' + weekDates.current[5]}} key={keys[4]}/>
+          <Day data={{id: userData.id, day: 1, tasks: tasks[0], title: 'mon ' + weekDates.current[0]}} key={keys[0]} />
+          <Day data={{id: userData.id, day: 2, tasks: tasks[1], title: 'tue ' + weekDates.current[1]}} key={keys[1]}/>
+          <Day data={{id: userData.id, day: 3, tasks: tasks[2], title: 'wed ' + weekDates.current[2]}} key={keys[2]}/>
+          <Day data={{id: userData.id, day: 4, tasks: tasks[3], title: 'thu ' + weekDates.current[3]}} key={keys[3]}/>
+          <Day data={{id: userData.id, day: 5, tasks: tasks[4], title: 'fri ' + weekDates.current[4]}} key={keys[4]}/>
         </div>
         <div className='weekend__container'>
-          <Day data={{id: userData.id, day: 6, tasks: tasks[5], title: 'sat ' + weekDates.current[6]}} key={keys[5]}/>
-          <Day data={{id: userData.id, day: 7, tasks: tasks[6], title: 'sun ' + weekDates.current[0]}} key={keys[6]}/>
+          <Day data={{id: userData.id, day: 6, tasks: tasks[5], title: 'sat ' + weekDates.current[5]}} key={keys[5]}/>
+          <Day data={{id: userData.id, day: 7, tasks: tasks[6], title: 'sun ' + weekDates.current[6]}} key={keys[6]}/>
           <section className='notes'>
             <p className='notes-title'>Notes</p>
             <textarea id='notesbox' className='notes-input' spellCheck='false' defaultValue={notes.current} onBlur={(event) => saveNotes(event.currentTarget.value)}></textarea>

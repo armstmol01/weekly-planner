@@ -65,8 +65,7 @@ app.get('/api/login', async (req, res, next) => {
     }
     const username = req.query.username;
     const password = req.query.password; // stored as text in Heroku db
-    console.log(username);
-    console.log(password);
+
     let qry = 'SELECT * FROM users WHERE username = $1';
     let db = await pool.connect();
     let userData = await db.query(qry, [username]); // get for 1 row, all for multiple
@@ -76,8 +75,6 @@ app.get('/api/login', async (req, res, next) => {
       // user does not exist
       return res.status(CLIENT_ERROR_CODE).send("The username you've entered is incorrect");
     }
-
-    console.log(userData.rows[0]);
 
     // validate password w/ salt and hash function
     // success if hash of given password w/ stored salt equals stored password
@@ -92,7 +89,6 @@ app.get('/api/login', async (req, res, next) => {
       "id" : userData.rows[0].id,
       "username" : username
     };
-    console.log(result);
 
     res.json(result);
   } catch (err) {
@@ -125,8 +121,6 @@ app.get('/api/tasks', async (req, res, next) => {
       "tasks": taskData.rows
     }
 
-    console.log(result);
-
     res.json(result);
   } catch (err) {
     console.log(err);
@@ -146,7 +140,6 @@ app.post('/api/new-user', async function (req, res, next) {
     let qry = 'SELECT username FROM users WHERE username = $1';
     let db = await pool.connect();
     let userExists = await db.query(qry, [username]);
-    console.log("user exists? " + userExists.rowCount);
 
     if (userExists.rowCount !== 0) {
       // username already exists
@@ -167,8 +160,7 @@ app.post('/api/new-user', async function (req, res, next) {
     db.release();
     res.send('<p>Made a new user</p>');
   } catch (err) {
-    console.error(err);
-    console.log("500 error");
+    console.log(err);
     res.status(SERVER_ERROR_CODE).send("Failed to process request");
   }
 });
@@ -179,7 +171,6 @@ app.post('/api/add-task', async (req, res, next) => {
     const userId = req.body.userId;
     const day = req.body.day;
     const taskContent = req.body.task;
-    console.log(req.body);
 
     if (!userId || !day || !taskContent) {
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
@@ -189,7 +180,6 @@ app.post('/api/add-task', async (req, res, next) => {
     let qry = 'INSERT INTO tasks(user_id, day, content, checked) VALUES($1, $2, $3, $4)'; // explicitly say checked = false??
     let db = await pool.connect();
     await db.query(qry, [userId, day, taskContent, false]);
-    console.log('added new task');
     db.release();
   } catch (err) {
     console.error(err);
@@ -203,7 +193,6 @@ app.post('/api/check-task', async (req, res, next) => {
     // bug when checkedStatus = 'false' since !checkedStatus evaluates to true, or "missing"
     if (!req.body.userId || !req.body.day || !req.body.task || req.body.checkedStatus === null) {
       console.log("missing body");
-      console.log(req.body);
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
     }
 
@@ -211,13 +200,11 @@ app.post('/api/check-task', async (req, res, next) => {
     const day = req.body.day;
     const taskContent = req.body.task;
     const checked = req.body.checkedStatus;
-    console.log(req.body);
 
     // add task to database
     let qry = 'UPDATE tasks SET checked = $1 WHERE user_id = $2 AND day = $3 AND content = $4';
     let db = await pool.connect();
     await db.query(qry, [checked, userId, day, taskContent]);
-    console.log('updated checked attribute for given task(s)');
     db.release();
   } catch (err) {
     console.error(err);
@@ -242,7 +229,6 @@ app.post('/api/delete-task', async (req, res, next) => {
     let db = await pool.connect();
     await db.query(qry, [userId, day, taskContent]);
     db.release();
-    console.log("deleted task");
   } catch (err) {
     console.error(err);
     res.status(SERVER_ERROR_CODE).send("Failed to process request");
@@ -276,8 +262,6 @@ app.get('/api/notes', async (req, res, next) => {
       'notes': notesData.rows[0].content
     }
 
-    console.log(result);
-
     res.json(result);
   } catch (err) {
     console.log(err);
@@ -289,19 +273,22 @@ app.get('/api/notes', async (req, res, next) => {
 app.post('/api/save-notes', async (req, res, next) => {
   try {
     const userId = req.body.userId;
-    console.log("notes: " + req.body.notes);
     const notesContent = req.body.notes || "";
-    console.log(req.body);
 
     if (!userId) {
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
     }
 
-    // add or update notes for given user
-    let qry = 'INSERT INTO notes(user_id, content) VALUES($1, $2) ON CONFLICT (user_id) DO UPDATE SET content = $2';
-    let db = await pool.connect();
-    await db.query(qry, [userId, notesContent]);
-    console.log('added new task');
+    if (notesContent === "") { // save space by not storing empty notes
+      let qry = 'DELETE FROM notes WHERE user_id=$1';
+      let db = await pool.connect();
+      await db.query(qry, [userId]);
+    } else {
+      // add or update notes for given user
+      let qry = 'INSERT INTO notes(user_id, content) VALUES($1, $2) ON CONFLICT (user_id) DO UPDATE SET content = $2';
+      let db = await pool.connect();
+      await db.query(qry, [userId, notesContent]);
+    }
     db.release();
   } catch (err) {
     console.error(err);
@@ -312,7 +299,6 @@ app.post('/api/save-notes', async (req, res, next) => {
 app.post('/api/delete-week', async (req, res, next) => {
   try {
     const userId = req.body.userId;
-    console.log(req.body);
 
     if (!userId) {
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
@@ -325,7 +311,6 @@ app.post('/api/delete-week', async (req, res, next) => {
     let db = await pool.connect();
     await db.query(notesQry, [notesContent, userId]);
     await db.query(tasksQry, [userId]);
-    console.log('deleted week');
     db.release();
   } catch (err) {
     console.error(err);

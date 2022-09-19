@@ -56,12 +56,10 @@ const Home = () => {
 
   const saveNotes = async (notesContent) => {
     // console.log("SAVING NOTES");
-    if (!notesContent) {
-      notesContent = "";
-    }
+    let content = notesContent || "";
     await axios.post('/api/save-notes', {
       userId: userData.id,
-      notes: notesContent.trim() // notes.current
+      notes: content.trim() // notes.current
     })
     .catch(handleError);
   }

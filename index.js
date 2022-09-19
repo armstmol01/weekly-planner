@@ -279,17 +279,18 @@ app.post('/api/save-notes', async (req, res, next) => {
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
     }
 
-    if (notesContent === "") { // save space by not storing empty notes
+    if (!notesContent.length()) { // save space by not storing empty notes
       let qry = 'DELETE FROM notes WHERE user_id=$1';
       let db = await pool.connect();
       await db.query(qry, [userId]);
+      db.release();
     } else {
       // add or update notes for given user
       let qry = 'INSERT INTO notes(user_id, content) VALUES($1, $2) ON CONFLICT (user_id) DO UPDATE SET content = $2';
       let db = await pool.connect();
       await db.query(qry, [userId, notesContent]);
+      db.release();
     }
-    db.release();
   } catch (err) {
     console.error(err);
     res.status(SERVER_ERROR_CODE).send("Failed to process request");

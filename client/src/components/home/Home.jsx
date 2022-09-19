@@ -97,12 +97,17 @@ const Home = () => {
     // calculate the dates of the 7 day week
     for (let i = 0; i < 7; i++) {
       day = day.add(1, 'days');
-      let dateString = day.format('MM-DD');
-      // if 09-11 display 9-11
-      if (dateString.slice(0, 1) === '0') {
-        dateString = dateString.slice(1);
+      let dateString = day.format('MMDD');
+      let monthDate = dateString.slice(0, 2);
+      let dayDate = dateString.slice(2);
+      // if 05-02 display display 5-2
+      if (monthDate.slice(0, 1) === '0') {
+        monthDate = monthDate.slice(1);
       }
-      week.push(dateString);
+      if (dayDate.slice(0, 1) === '0') {
+        dayDate = dayDate.slice(1);
+      }
+      week.push(monthDate + '-' + dayDate);
     }
 
     return week;

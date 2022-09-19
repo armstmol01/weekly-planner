@@ -79,6 +79,9 @@ app.get('/api/login', async (req, res, next) => {
     // validate password w/ salt and hash function
     // success if hash of given password w/ stored salt equals stored password
     let salt = userData.rows[0].salt;
+    // console.log(salt);
+    // console.log(sha1(password, salt).passwordHash);
+    // console.log(userData.rows[0].password);
     if (sha1(password, salt).passwordHash !==  userData.rows[0].password) {
       // incorrect password
       return res.status(CLIENT_ERROR_CODE).send("The password you've entered is incorrect");
@@ -133,6 +136,8 @@ app.post('/api/new-user', async function (req, res, next) {
   try {
     let username = req.body.username;
     let password = req.body.password;
+    // console.log("new " + username);
+    // console.log("new " + password);
     if (!username || !password) {
       console.log("missing params");
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
@@ -153,6 +158,8 @@ app.post('/api/new-user', async function (req, res, next) {
     const salt = genSalt(3); // 3 bytes?
     // generate hashed password
     const hPassword = sha1(password, salt).passwordHash;
+    // console.log("new user salt " + salt);
+    // console.log("new user hash " + hPassword);
 
     // add user to database
     qry = 'INSERT INTO users(username, password, salt) VALUES($1, $2, $3)';

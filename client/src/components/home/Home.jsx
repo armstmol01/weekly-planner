@@ -19,12 +19,12 @@ const Home = () => {
   const [keys, setKeys] = useState([0, 7, 14, 28, 35, 42, 49]); // keys won't conflict w/ eachother
 
   useEffect(() => {
-    let urlTasks = "/api/tasks?id=" + userData.id;
+    let urlTasks = "/api/tasks?id=" + encodeURIComponent(userData.id);
     fetch(urlTasks)
      .then((res) => (res.json()))
      .then(sortTasks)
      .catch(handleError);
-    let urlNotes = "/api/notes?id=" + userData.id;
+    let urlNotes = "/api/notes?id=" + encodeURIComponent(userData.id);
     fetch(urlNotes)
      .then((res) => (res.json()))
      .then(setNotes)
@@ -56,7 +56,7 @@ const Home = () => {
 
   const saveNotes = async (notesContent) => {
     // console.log("SAVING NOTES");
-    console.log(notesContent);
+    // console.log(notesContent);
     let content = notesContent || "";
     console.log(content.trim());
     await axios.post('/api/save-notes', {

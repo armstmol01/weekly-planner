@@ -11,12 +11,12 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // console.log(event.target.username.value);
-    // console.log(event.target.password.value);
+    console.log(event.target.password.value);
     setErrorMsg("");
 
     // request user data
-    let url = '/api/login?username=' + event.target.username.value.toLowerCase()
-              + '&password=' + event.target.password.value;
+    let url = '/api/login?username=' + encodeURIComponent(event.target.username.value.toLowerCase())
+              + '&password=' + encodeURIComponent(event.target.password.value);
     fetch(url)
       .then(checkStatus)
       .then(res => res.json())

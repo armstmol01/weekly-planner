@@ -27,7 +27,7 @@ const Day = (props) => {
     await axios.post('/api/add-task', {
       userId: id,
       day: day,
-      task: newTask.current // document.getElementById('task-input').value
+      task: newTask.current.trim() // document.getElementById('task-input').value
     })
     .then(updateTasks(newTask.current))
     .catch(setActive(false));

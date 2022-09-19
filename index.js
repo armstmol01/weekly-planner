@@ -279,7 +279,7 @@ app.post('/api/save-notes', async (req, res, next) => {
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");
     }
 
-    if (!notesContent.length()) { // save space by not storing empty notes
+    if (!notesContent.length) { // save space by not storing empty notes
       let qry = 'DELETE FROM notes WHERE user_id=$1';
       let db = await pool.connect();
       await db.query(qry, [userId]);

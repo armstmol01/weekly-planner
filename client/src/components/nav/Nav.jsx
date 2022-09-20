@@ -18,12 +18,6 @@ const Nav = (props) => {
     }
   }
   const navigate = useNavigate();
-  // const homeProps = props.data.homeProps;
-  // console.log(props.data.active);
-  // console.log(props.data.homeProps);
-  // React.Element()
-  console.log(props.data);
-  console.log(backDest());
 
   // set as 'active' or ''
   return (

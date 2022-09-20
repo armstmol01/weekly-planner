@@ -10,7 +10,6 @@ const Account = () => {
   // const navigate = useNavigate(); // navigate to login screen after deletion
   const location = useLocation();
   const resp = location.state.userData;
-  console.log(resp);
   const [accountStatus, setAccountStatus] = useState('account');
 
   const form = useRef();
@@ -30,13 +29,11 @@ const Account = () => {
 
   const deleteAccount = async () => {
     setAccountStatus("delete");
-    console.log(resp.id);
-    console.log(resp.username);
     await axios.post('/api/delete-user', {
       id: resp.id,
       username: resp.username // notes.current
     })
-    .catch((err) => {console.log(err)});
+    .catch((err) => {});
   }
 
   return (

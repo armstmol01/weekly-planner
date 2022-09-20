@@ -5,7 +5,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import {IoMdArrowRoundBack } from 'react-icons/io'
 
 const Account = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // navigate to login screen after deletion
   const location = useLocation();
   const resp = location.state.userData;
   console.log(resp);
@@ -13,11 +13,7 @@ const Account = () => {
 
   return (
     <div>
-      <nav>
-        <div className='link'>
-          <IoMdArrowRoundBack className='back-arrow-icon' onClick={() => {navigate('/home', {state: {resp}})}}/>
-        </div>
-      </nav>
+      <Nav data='account' />
     </div>
   )
 }

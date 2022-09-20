@@ -148,7 +148,7 @@ const Home = () => {
       {/* <Nav data='home'></Nav> */}
       <nav>
         <div className='link'>
-          <IoMdArrowRoundBack className='back-arrow-icon' onClick={() => {navigate('/')}}/>
+          <IoMdArrowRoundBack className='back-arrow-icon' onClick={() => {navigate(-1)}}/>
         </div>
         <div className='link'>
           <FiSettings className='account-icon' onClick={NavToAccount}/>

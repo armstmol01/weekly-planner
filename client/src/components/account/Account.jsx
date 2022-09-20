@@ -51,7 +51,7 @@ const Account = () => {
             <div>
               <p>Account deleted</p>
               <div className='delete__msg'>
-                <p className='sorry-msg'>Sorry to see you go!</p>
+                <p className='sorry-msg'>Sorry to see you go</p>
                 <HiEmojiSad className='sad-icon'/>
               </div>
             </div>

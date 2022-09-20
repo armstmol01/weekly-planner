@@ -5,7 +5,7 @@
   font-family: 'Inter', sans-serif;
   font-weight: 200;
   gap: 4rem;
-  margin: 2rem 0;
+  margin: 7vh 0 2rem 0;
 }
 
 .account__body form {
@@ -18,17 +18,27 @@
 }
 
 .account__body form > textarea, .account__body form > input {
+  width: 100%;
   background-color: rgb(230, 246, 255);
   border: 1px solid rgb(82, 160, 198);
   border-radius: 10px;
   padding: 10px;
   resize: none;
   overflow-y: scroll;
-  width: 100%;
   font-family: 'Inter', sans-serif;
   font-weight: 300;
-  font-size: 15px;
+  font-size: 16px;
 }
+
+.account__body form > textarea {
+  height: 20vh;
+}
+
+/* .account__body form > input {
+  width: 70%;
+} */
+
+
 
 .account__body form > label {
   margin-bottom: -0.5rem;
@@ -120,5 +130,6 @@
 
   .account__body form {
     margin-left: -2rem; /* align with Manage Account title */
+    width: 20rem;
   }
 }

@@ -20,6 +20,20 @@
   color: var(--color-primary); */
 }
 
+.account-icon {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: var(--color-light);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.account-icon:hover {
+  color: var(--color-primary);
+}
+
 .clear-btn {
   align-self: flex-end;
   /* padding-right: 2rem; */

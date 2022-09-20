@@ -1,13 +1,15 @@
 import React from 'react'
 import './Home.css'
 import { useState, useRef, useEffect } from 'react'
-import { useLocation } from 'react-router-dom' // for passed in state from navigate()
+import { useLocation, useNavigate } from 'react-router-dom' // for passed in state from navigate()
 import Nav from '../nav/Nav'
 import Day from '../day/Day'
 import axios from 'axios'
+import {FiSettings} from 'react-icons/fi'
 var moment = require('moment');
 
 const Home = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const userData = location.state.resp;
   const weekDates = useRef(['','','','','','','']);
@@ -124,6 +126,10 @@ const Home = () => {
     setKeys(temp);
   }
 
+  const NavToAccount = () => {
+    navigate('/account', {state: {userData}});
+  }
+
   const handleError = (error) => {
     // console.log(error);
     setLoadedTasks(false);
@@ -139,6 +145,7 @@ const Home = () => {
   return (
     <div className='home__container'>
       <Nav data='home'></Nav>
+      <FiSettings className='account-icon' onClick={NavToAccount}/>
       <h2 className='week-title'>{moment().format('dddd').toLowerCase()}</h2>
       {loadedTasks && loadedNotes ?
       <div className="week__container">

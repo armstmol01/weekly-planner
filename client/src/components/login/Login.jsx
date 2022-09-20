@@ -64,7 +64,7 @@ const Login = () => {
             </div>
           </div>
           <p>Don't have an account? </p>
-          <Link to='/account' className='account-link'>Sign up</Link>
+          <Link to='/sign-up' className='signup-link'>Sign up</Link>
         </form>
         {/* <BsCalendar4Range className='calendar__icon'/> */}
       </div>

@@ -7,6 +7,7 @@ import About from './components/about/About';
 import Account from './components/account/Account';
 import Home from './components/home/Home';
 import reportWebVitals from './reportWebVitals';
+import SignUp from './components/signup/SignUp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +17,7 @@ root.render(
         <Route path='' element={<App />} />
         <Route path='about' element={<About />} />
         <Route path='home' element={<Home />} />
+        <Route path='sign-up' element={<SignUp />} />
         <Route path='account' element={<Account />} />
       </Routes>
     </BrowserRouter>

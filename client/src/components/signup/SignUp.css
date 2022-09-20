@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Padauk:wght@400;700&family=Roboto&display=swap');
+.signup__container {
+  display: flex;
+  flex-direction: column;
+  gap: 15rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--color-primary);
+}
+
+
+.signup__container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 1rem;
+  width: 100%;
+  gap: 1rem;
+}
+
+.signup__container form > p, .success__msg, .error__msg {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.signup__container input {
+  width: 300px;
+  height: 30px;
+  color: var(--color-primary);
+  border-radius: 50px;
+  background: white;
+}
+
+/* input[type=text] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+} */
+
+.signup__container button {
+  width: fit-content;
+  padding: 0 10px 0 10px;
+  background: aliceblue;
+  color: rgb(82, 160, 198);
+  font-weight: 300;
+}
+
+.signup__container button:hover {
+  color: var(--color-light);
+}
+
+/* ===== MEDIA QUERIES (PHONES) ===== */
+@media screen and (max-width: 850px) {
+  .signup__container {
+    gap: 8rem;
+  }
+}

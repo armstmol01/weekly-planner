@@ -10,18 +10,27 @@ import {MdManageAccounts} from 'react-icons/md'
 
 const Nav = (props) => {
   const activeNav = props.data;
+  const backDest = () => {
+    if (props.data === 'account') {
+      return -1; // if account exists go back to week
+    } else if (props.data === 'delete') {
+      return '/'; // if account is deleted, go back to login
+    }
+  }
   const navigate = useNavigate();
   // const homeProps = props.data.homeProps;
   // console.log(props.data.active);
   // console.log(props.data.homeProps);
   // React.Element()
+  console.log(props.data);
+  console.log(backDest());
 
   // set as 'active' or ''
   return (
     <nav>
       {/* <Link to='/' id={activeNav === 'home' ? 'name' : ''} className={activeNav === 'home' ? 'home link' : 'link'}>{activeNav==='home'?'Molly\'s':<IoMdArrowRoundBack className='back-arrow-icon'/>}</Link> */}
-      {activeNav === 'login' ? <Link to='/' id='name' className='link'>{'WerkWeek'}</Link> : <div className='link'><IoMdArrowRoundBack className='back-arrow-icon' onClick={() => {navigate(-1)}}/></div>}
-      {activeNav !== 'signup' && activeNav !== 'home' && activeNav !== 'account' ? <Link to='/about' className={activeNav === 'about'? 'about link' : 'link'}>about</Link> : ''}
+      {activeNav === 'login' ? <Link to='/' id='name' className='link'>{'WerkWeek'}</Link> : <div className='link'><IoMdArrowRoundBack className='back-arrow-icon' onClick={() => {navigate(backDest())}}/></div>}
+      {activeNav === 'login' || activeNav === 'about' ? <Link to='/about' className={activeNav === 'about'? 'about link' : 'link'}>about</Link> : ''}
     </nav>
   )
 }

@@ -62,7 +62,7 @@
 }
 
 .username {
-  color: rgb(50, 179, 244);
+  color: rgb(50, 146, 194);
   font-weight: 500;
 }
 
@@ -83,6 +83,26 @@
   cursor: pointer;
 }
 
+.manage__container p {
+  font-weight: 400;
+}
+
+.delete__msg {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+  margin-top: 1rem;
+}
+
+.delete__msg  .sorry-msg {
+  font-weight: 500;
+  color: rgb(50, 146, 194);
+}
+
+.sad-icon {
+  color: rgb(50, 146, 194);
+}
 
 .account__container .nav {
   position: absolute;

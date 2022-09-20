@@ -100,37 +100,6 @@ app.get('/api/login', async (req, res, next) => {
   }
 });
 
-// get tasks for specified user
-app.get('/api/tasks', async (req, res, next) => {
-  try {
-    const userId = req.query.id;
-    if (!userId) {
-      console.log("missing body params")
-      return res.status(CLIENT_ERROR_CODE).send("Missing request params");
-    }
-    // get tasks associated w/ user
-    qry = 'SELECT * FROM tasks WHERE user_id = $1 ORDER BY day, id';
-    let db = await pool.connect();
-    let taskData = await db.query(qry, [userId]);
-    db.release();
-
-    if (!taskData) {
-      console.log("no tasks for user");
-      return res.status(CLIENT_ERROR_CODE).send("No tasks for user");
-    }
-
-    // return array of tasks for current week (days 1-7)
-    let result = {
-      "tasks": taskData.rows
-    }
-
-    res.json(result);
-  } catch (err) {
-    console.log(err);
-    res.status(SERVER_ERROR_CODE).send("Failed to process request");
-  }
-});
-
 // create new user account
 app.post('/api/new-user', async function (req, res, next) {
   try {
@@ -166,6 +135,60 @@ app.post('/api/new-user', async function (req, res, next) {
     await db.query(qry, [username, hPassword, salt]);
     db.release();
     res.send('<p>Made a new user</p>');
+  } catch (err) {
+    console.log(err);
+    res.status(SERVER_ERROR_CODE).send("Failed to process request");
+  }
+});
+
+// delete existing user
+app.post('/api/delete-user', async (req, res, next) => {
+  try {
+    console.log("hello");
+    if (!req.body.id || !req.body.username) {
+      console.log("missing body params");
+      return res.status(CLIENT_ERROR_CODE).send("Missing body params");
+    }
+
+    const userId = req.body.id;
+    const username = req.body.username;
+
+    // delete task from database
+    let qry = 'DELETE FROM users WHERE id = $1 AND username = $2';
+    let db = await pool.connect();
+    await db.query(qry, [userId, username]);
+    db.release();
+  } catch (err) {
+    console.error(err);
+    res.status(SERVER_ERROR_CODE).send("Failed to process request");
+  }
+});
+
+// get tasks for specified user
+app.get('/api/tasks', async (req, res, next) => {
+  try {
+    const userId = req.query.id;
+    if (!userId) {
+      console.log("missing body params")
+      return res.status(CLIENT_ERROR_CODE).send("Missing request params");
+    }
+    // get tasks associated w/ user
+    qry = 'SELECT * FROM tasks WHERE user_id = $1 ORDER BY day, id';
+    let db = await pool.connect();
+    let taskData = await db.query(qry, [userId]);
+    db.release();
+
+    if (!taskData) {
+      console.log("no tasks for user");
+      return res.status(CLIENT_ERROR_CODE).send("No tasks for user");
+    }
+
+    // return array of tasks for current week (days 1-7)
+    let result = {
+      "tasks": taskData.rows
+    }
+
+    res.json(result);
   } catch (err) {
     console.log(err);
     res.status(SERVER_ERROR_CODE).send("Failed to process request");

@@ -4,6 +4,7 @@ import Nav from '../nav/Nav'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import emailjs from 'emailjs-com';
+import {HiEmojiSad} from 'react-icons/hi'
 
 const Account = () => {
   // const navigate = useNavigate(); // navigate to login screen after deletion
@@ -27,6 +28,17 @@ const Account = () => {
       e.target.reset();
   };
 
+  const deleteAccount = async () => {
+    setAccountStatus("delete");
+    console.log(resp.id);
+    console.log(resp.username);
+    await axios.post('/api/delete-user', {
+      id: resp.id,
+      username: resp.username // notes.current
+    })
+    .catch((err) => {console.log(err)});
+  }
+
   return (
     <div className='account__component'>
       <Nav className='nav' data={accountStatus} />
@@ -35,7 +47,15 @@ const Account = () => {
           <h2>How goes it <span className='username'>{resp.username}</span>?</h2>
           <div className='manage__container'>
             <h3>Manage account</h3>
-            <div className="delete-btn">delete account</div>
+            {accountStatus === "account" ? <div className="delete-btn" onClick={deleteAccount}>Delete account</div> :
+            <div>
+              <p>Account deleted</p>
+              <div className='delete__msg'>
+                <p className='sorry-msg'>Sorry to see you go!</p>
+                <HiEmojiSad className='sad-icon'/>
+              </div>
+            </div>
+            }
           </div>
         </div>
         <form  ref={form} onSubmit={sendEmail}>

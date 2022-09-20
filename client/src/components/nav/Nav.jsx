@@ -11,10 +11,10 @@ import {MdManageAccounts} from 'react-icons/md'
 const Nav = (props) => {
   const activeNav = props.data;
   const backDest = () => {
-    if (props.data === 'account') {
-      return -1; // if account exists go back to week
-    } else if (props.data === 'delete') {
-      return '/'; // if account is deleted, go back to login
+    if (props.data === 'delete') {
+      return '/'; // if account exists go back to week
+    } else {
+      return -1; // if account is deleted, go back to login
     }
   }
   const navigate = useNavigate();

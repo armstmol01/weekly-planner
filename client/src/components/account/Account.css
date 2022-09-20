@@ -5,6 +5,7 @@
   font-family: 'Inter', sans-serif;
   font-weight: 200;
   gap: 4rem;
+  margin: 2rem 0;
 }
 
 .account__body form {
@@ -25,7 +26,7 @@
   overflow-y: scroll;
   width: 100%;
   font-family: 'Inter', sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   font-size: 15px;
 }
 
@@ -35,12 +36,13 @@
 
 .account__body form > button {
   width: 30%;
-  color: rgb(82, 160, 198);
+  border-color: var(--color-primary);;
+  color: var(--color-primary); /*rgb(82, 160, 198);
   /* align-self: center; */
 }
 
 .account__body form > button:hover {
-  color: var(--color-light);
+  /* color: rgb(82, 160, 198); */
   /* align-self: center; */
 }
 
@@ -65,20 +67,20 @@
 }
 
 .manage__container {
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  gap: 5px; */
+  gap: 1rem;
   width: 100%;
 }
-
 
 .delete-btn {
   border: 1px solid var(--color-primary);
   border-radius: 25px;
   width: fit-content;
-  padding: 0 5px;
+  padding: 0 10px;
   font-weight: 300;
-  margin-top: 5px;
+  /* margin-top: 5px; */
+  cursor: pointer;
 }
 
 
@@ -93,6 +95,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    margin-top: 0;
   }
 
   .account__body form {

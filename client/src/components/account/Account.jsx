@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import './Account.css'
 import Nav from '../nav/Nav'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import emailjs from 'emailjs-com';
 
 const Account = () => {
   // const navigate = useNavigate(); // navigate to login screen after deletion
@@ -11,6 +12,21 @@ const Account = () => {
   console.log(resp);
   const [accountStatus, setAccountStatus] = useState('account');
 
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_a4c1ahh', 'template_9ai70jw', form.current, 'PCGoNLqyNBc20wHVA')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+
+      e.target.reset();
+  };
+
   return (
     <div className='account__component'>
       <Nav className='nav' data={accountStatus} />
@@ -18,19 +34,17 @@ const Account = () => {
         <div className="account__container">
           <h2>How goes it <span className='username'>{resp.username}</span>?</h2>
           <div className='manage__container'>
-            <h3>Manage Account</h3>
+            <h3>Manage account</h3>
             <div className="delete-btn">delete account</div>
           </div>
         </div>
-        <form action='mailto:mamolly01@gmail.com'
-          method='POST'
-          enctype='text/plain'
-          name='EmailForm'>
+        <form  ref={form} onSubmit={sendEmail}>
           <h3>Document an issue</h3>
-          <label for="name">Title</label>
-          <input type="text" name="name"></input>
-          <label for="ContactComment">Bug description</label>
-          <textarea id='ContactComment' rows='6' cols='20'/>
+          <label>Title</label>
+          <input type="text" name="name" required></input>
+          <label>Bug description</label>
+          <textarea name="message"rows='6' cols='20' required/>
+          <input type="email" name="email" placeholder='Your email' required />
           <button type="submit">Send</button>
           {/* <input type="submit" value="Send"/> */}
         </form>

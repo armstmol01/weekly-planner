@@ -94,4 +94,8 @@
     align-items: center;
     gap: 1rem;
   }
+
+  .account__body form {
+    margin-left: -2rem; /* align with Manage Account title */
+  }
 }

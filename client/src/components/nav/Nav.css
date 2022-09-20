@@ -35,6 +35,7 @@ nav .about {
 .back-arrow-icon {
   font-size: 2rem;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 /* ===== MEDIA QUERIES (SMALL DEVICES) ===== */

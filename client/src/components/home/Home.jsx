@@ -6,6 +6,7 @@ import Nav from '../nav/Nav'
 import Day from '../day/Day'
 import axios from 'axios'
 import {FiSettings} from 'react-icons/fi'
+import {IoMdArrowRoundBack} from 'react-icons/io'
 var moment = require('moment');
 
 const Home = () => {
@@ -144,8 +145,15 @@ const Home = () => {
 
   return (
     <div className='home__container'>
-      <Nav data='home'></Nav>
-      <FiSettings className='account-icon' onClick={NavToAccount}/>
+      {/* <Nav data='home'></Nav> */}
+      <nav>
+        <div className='link'>
+          <IoMdArrowRoundBack className='back-arrow-icon' onClick={() => {navigate('/')}}/>
+        </div>
+        <div className='link'>
+          <FiSettings className='account-icon' onClick={NavToAccount}/>
+        </div>
+      </nav>
       <h2 className='week-title'>{moment().format('dddd').toLowerCase()}</h2>
       {loadedTasks && loadedNotes ?
       <div className="week__container">

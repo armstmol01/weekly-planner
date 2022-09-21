@@ -152,7 +152,7 @@ app.post('/api/delete-user', async (req, res, next) => {
     const userId = req.body.id;
     const username = req.body.username;
 
-    // delete task from database
+    // delete user from database
     let qry = 'DELETE FROM users WHERE id = $1 AND username = $2';
     let db = await pool.connect();
     await db.query(qry, [userId, username]);

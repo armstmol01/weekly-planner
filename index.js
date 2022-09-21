@@ -144,7 +144,6 @@ app.post('/api/new-user', async function (req, res, next) {
 // delete existing user
 app.post('/api/delete-user', async (req, res, next) => {
   try {
-    console.log("hello");
     if (!req.body.id || !req.body.username) {
       console.log("missing body params");
       return res.status(CLIENT_ERROR_CODE).send("Missing body params");

@@ -27,7 +27,7 @@ const SignUp = () => {
   const handleNewUser = (res) => {
     // console.log(res);
     setErrorMsg('');
-    setSuccessMsg('Created new user! Please return to login');
+    setSuccessMsg(<p className='success__msg'>Created new user!<br/>Please return to login</p>);
     // setTimeout(() => {navigate(-1)}, 2000); // return to the previous page (login)
   }
 
@@ -44,7 +44,7 @@ const SignUp = () => {
           <input name='username' placeholder='username' type='text' required></input>
           <input name='password' placeholder='password' type='text' required></input>
           <button type="submit">Create account</button>
-          {errorMsg === '' ? <p className='success__msg'>{successMsg}</p>:<p className='error__msg'>{errorMsg}</p>}
+          {errorMsg === '' ? <div>{successMsg}</div>:<p className='error__msg'>{errorMsg}</p>}
       </form>
     </div>
   )

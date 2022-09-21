@@ -94,11 +94,6 @@ input[type=text], input[type=password], input[type=email], textarea {
   appearance: none;
 }
 
-input[type=password] {
-  font-family: sans-serif;
-  letter-spacing: 0.125em;
-}
-
 input::-ms-clear, input::-ms-reveal {
   display: none; /* password visible eye */
 }

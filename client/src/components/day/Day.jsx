@@ -52,7 +52,9 @@ const Day = (props) => {
         <div className='check__box'></div>
         <input id='task-input' spellCheck='false' onChange={(event) => {newTask.current = event.target.value}}></input>
       </div>:''}
-      <TaskList data={{userId: id, day: day, tasks: taskState}} />
+      <div className='tasks__container'>
+        <TaskList data={{userId: id, day: day, tasks: taskState}} />
+      </div>
     </section>
   )
 }

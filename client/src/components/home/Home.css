@@ -98,7 +98,7 @@ section {
   font-family: 'Inter', sans-serif;
   font-weight: 200;
   color: var(--color-primary);
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .home__container .error__container {
@@ -142,13 +142,16 @@ section {
     width: 89.4vw; /* hide scrolling notes */
   }
 
+  .notes-input {
+    font-size: 16px;
+  }
+
   .week-title {
     margin-top: -3rem;
     margin-left: 5rem;
     font-size: 5rem;
   }
 }
-
 
 @media screen and (max-width: 600px) {
   .week-title {

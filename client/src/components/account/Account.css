@@ -126,11 +126,11 @@
     align-items: flex-start;
     gap: 1rem;
     margin-top: 0;
-    margin-left: 1rem;
+    margin-left: 5rem;
   }
 
   .account__body form {
-    width: 20rem;
+    width: 25rem;
   }
 
   .account__container h2 {
@@ -139,6 +139,10 @@
 }
 
 @media screen and (max-width: 600px) {
+  .account__body {
+    margin-left: 10vw;
+  }
+
   .account__body form {
     width: 90%;
   }

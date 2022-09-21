@@ -4,7 +4,7 @@
   gap: 10px;
   padding-left: 5px;
   min-height: 25px;
-  min-height: fit-content;
+  max-height: fit-content;
   cursor: pointer;
 }
 
@@ -19,7 +19,7 @@
   border: 1px solid var(--color-light);
   display: block;
   cursor: pointer;
-  margin-top: 8.5px;
+  margin-top: 8.3px;
 }
 
 .completed .check__box {
@@ -34,4 +34,11 @@
 
 .hidden {
   display: none;
+}
+
+
+@media screen and (max-width: 850px) {
+  .check__box {
+    margin-top: 9px;
+  }
 }

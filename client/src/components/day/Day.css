@@ -50,21 +50,14 @@ section {
   border-radius: 25px; */
 }
 
-.task {
+.tasks__container {
   display: flex;
-  gap: 10px;
-  padding-left: 5px;
-  min-height: 25px;
-  min-height: fit-content;
-}
-
-.task p {
-  width: 80%; /* fixes the check box squishing */
+  flex-direction: column;
 }
 
 #task-input {
-  height: fit-content;
-  margin: 3px 0 5px 0px; /* 5px bottom so its same as exisiting task spacing */
+  height: 25px;
+   /* 5px bottom so its same as exisiting task spacing */
   padding-left: 0px; /* 3px */
   border-radius: 0; /* 5px */
   width: 80%;
@@ -75,24 +68,8 @@ section {
   background-color: transparent;
 }
 
-.check__box {
-  width: 17px;
-  height: 10px;
-  border-radius: 50px;
-  border: 1px solid var(--color-light);
-  display: block;
-  cursor: pointer;
-  margin-top: 8.5px;
-}
-
-.completed .check__box {
-  background-color: var(--color-light);
-}
-
-.completed p {
-  text-decoration-line: line-through;
-  text-decoration-thickness: 5%;
-  color: var(--color-light);
+.task p, #task-input {
+  font-size: 15px;
 }
 
 /* ===== MEDIA QUERIES (SHORT SCREENS) ===== */
@@ -159,6 +136,14 @@ section {
 
   .day-title {
     width: 89.4vw;
+  }
+
+  .task p, #task-input {
+    font-size: 16px;
+  }
+
+  #task-input {
+    font-size: 16px;
   }
 }
 

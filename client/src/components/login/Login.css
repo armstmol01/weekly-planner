@@ -88,7 +88,7 @@ input {
   background: white;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email], textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

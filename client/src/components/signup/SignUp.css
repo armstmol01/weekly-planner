@@ -23,6 +23,10 @@
   font-weight: 300;
 }
 
+.success__msg, .error__msg {
+  text-align: center;
+}
+
 .signup__container input {
   width: 300px;
   height: 30px;

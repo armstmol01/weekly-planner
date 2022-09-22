@@ -61,7 +61,7 @@ app.get('/test', async (req, res) => {
 app.get('/api/login', async (req, res, next) => {
   try {
     if (!req.query.username || !req.query.password) {
-      return res.status(CLIENT_ERROR_CODE).send("The credentials you've entered are incorrect");
+      return res.status(CLIENT_ERROR_CODE).send("No user found");
     }
     const username = req.query.username;
     const password = req.query.password; // stored as text in Heroku db
@@ -73,7 +73,7 @@ app.get('/api/login', async (req, res, next) => {
 
     if (userData.rowCount === 0) {
       // user does not exist
-      return res.status(CLIENT_ERROR_CODE).send("The username you've entered is incorrect");
+      return res.status(CLIENT_ERROR_CODE).send("No user found");
     }
 
     // validate password w/ salt and hash function
@@ -84,7 +84,7 @@ app.get('/api/login', async (req, res, next) => {
     // console.log(userData.rows[0].password);
     if (sha1(password, salt).passwordHash !==  userData.rows[0].password) {
       // incorrect password
-      return res.status(CLIENT_ERROR_CODE).send("The password you've entered is incorrect");
+      return res.status(CLIENT_ERROR_CODE).send("Incorrect password");
     }
 
     // successful login

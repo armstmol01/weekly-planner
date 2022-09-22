@@ -22,7 +22,7 @@
 
 .github-link {
   margin-top: 1rem;
-  font-size: 1rem;
+  font-size: 18px;
   padding-left: 5px;
   color: var(--color-primary);
   transition: var(--transition);
@@ -78,5 +78,9 @@
     height: 22.5%;
     width: 80vw;
     margin: 0.5rem 0;
+  }
+
+  .github-link {
+    font-size: 16px;
   }
 }

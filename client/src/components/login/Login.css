@@ -43,7 +43,7 @@ h1 {
   border-radius: 50px;
   gap: 0rem;
   backdrop-filter: blur(10px);
-  animation-duration: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
 }
 
 .login__container form {

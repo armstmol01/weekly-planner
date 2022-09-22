@@ -21,7 +21,7 @@
   width: 100%;
   background-color: rgb(230, 246, 255);
   border: 1px solid rgb(82, 160, 198);
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px;
   resize: none;
   overflow-y: scroll;
@@ -39,7 +39,6 @@
 } */
 
 
-
 .account__body form > label {
   margin-bottom: -0.5rem;
 }
@@ -51,10 +50,10 @@
   /* align-self: center; */
 }
 
-.account__body form > button:hover {
+/* .account__body form > button:hover {
   /* color: rgb(82, 160, 198); */
-  /* align-self: center; */
-}
+  /* align-self: center;
+} */
 
 .account__container {
   display: flex;

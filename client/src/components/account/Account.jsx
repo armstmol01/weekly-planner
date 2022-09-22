@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import emailjs from 'emailjs-com';
 import {HiEmojiSad} from 'react-icons/hi'
+import {IoMdSend} from 'react-icons/io'
 
 const Account = () => {
   // const navigate = useNavigate(); // navigate to login screen after deletion
@@ -62,7 +63,7 @@ const Account = () => {
           <label>Bug description</label>
           <textarea name="message"rows='6' cols='20' required/>
           <input type="email" name="email" placeholder='Your email' required />
-          <button type="submit">Send</button>
+          <button type="submit"><IoMdSend/></button>
           {/* <input type="submit" value="Send"/> */}
         </form>
       </div>

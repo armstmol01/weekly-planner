@@ -21,7 +21,7 @@
   width: 100%;
   background-color: rgb(230, 246, 255);
   border: 1px solid rgb(82, 160, 198);
-  border-radius: 5px;
+  border-radius: 8px;
   padding: 10px;
   resize: none;
   overflow-y: scroll;
@@ -44,15 +44,18 @@
 }
 
 .account__body form > button {
-  width: 30%;
-  border-color: var(--color-primary);;
-  color: var(--color-primary); /*rgb(82, 160, 198);
+  width: fit-content;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
   /* align-self: center; */
 }
 
-/* .account__body form > button:hover {
-  /* color: rgb(82, 160, 198); */
-  /* align-self: center;
+/* .account__body form > button:hover, .delete-btn:hover {
+  background-color: var(--color-white);
 } */
 
 .account__container {
@@ -90,6 +93,7 @@
   font-weight: 300;
   /* margin-top: 5px; */
   cursor: pointer;
+  transition: var(--transition);
 }
 
 .manage__container p {

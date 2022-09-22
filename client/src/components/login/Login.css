@@ -43,11 +43,12 @@ h1 {
   border-radius: 50px;
   gap: 0rem;
   backdrop-filter: blur(10px);
-  animation: fadeIn 0.5s;
+  /* animation: fadeIn 0.5s; */
 }
 
 .login__container form {
   text-align: center;
+  animation: fadeIn 1.5s;
 }
 
 .login__container p {
@@ -151,8 +152,9 @@ button {
   /* top: calc(50% - 30px); */
   font-size: 16px;
   font-weight: 300;
-  height: 18px;
-  margin-bottom: 10px;
+  height: 10px; /*18px*/
+  margin-top: -8px; /*0*/
+  margin-bottom: 23px; /*10px*/
   width: 100%;
   text-align: center;
 }

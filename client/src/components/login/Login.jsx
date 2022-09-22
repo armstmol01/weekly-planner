@@ -56,10 +56,10 @@ const Login = () => {
         <form onSubmit={event => handleSubmit(event)}>
           <div className='input__container'>
             <div>
-              <input type='text' name='username' placeholder='username' className='username-input' required></input>
+              <input type='text' name='username' placeholder='username' className='username-input' autocorrect='off' autocapitalize='none' required></input>
             </div>
             <div className='password__box'>
-              <input type='password' name='password' placeholder='password' required></input>
+              <input type='password' name='password' placeholder='password' autocorrect='off' autocapitalize='none' required></input>
               <button type="submit"><BsArrowRightShort className='btn__arrow'/></button>
             </div>
           </div>

@@ -44,12 +44,6 @@ const Login = () => {
 
   return (
     <div className='login__component'>
-      {/* <div className='logo__container'>
-        <h1>WerkWeek</h1>
-        <h1>WerkWeek</h1>
-        <h1>WerkWeek</h1>
-        <h1>WerkWeek</h1>
-      </div> */}
       <div className='login__container'>
         <h2 className='title'>ok wrrrk...</h2>
         <p className='error__msg'>{errorMsg}</p>
@@ -66,7 +60,6 @@ const Login = () => {
           <p>Don't have an account? </p>
           <Link to='/sign-up' className='signup-link'>Sign up</Link>
         </form>
-        {/* <BsCalendar4Range className='calendar__icon'/> */}
       </div>
     </div>
   )

@@ -7,6 +7,11 @@
   to { opacity: 1; }
 }
 
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
 .week__container {
   background-color: transparent;
   display: flex;
@@ -18,7 +23,6 @@
   height: fit-content;
   border-radius: 20px;
   margin: 2rem auto 2rem auto;
-  animation-name: fadeIn;
   animation-duration: 0.3s;
   /* position: absolute; */
   /* center calendar */
@@ -60,6 +64,7 @@
   color: rgb(213, 238, 251);
   font-size: 12rem;
   position: absolute;
+  animation-duration: 2s;
 }
 
 .weekdays__container, .weekend__container {

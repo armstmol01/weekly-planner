@@ -154,9 +154,9 @@ const Home = () => {
           <FiSettings className='account-icon' onClick={NavToAccount}/>
         </div>
       </nav>
-      <h2 className='week-title'>{moment().format('dddd').toLowerCase()}</h2>
+      <h2 className='week-title fadeIn'>{moment().format('dddd').toLowerCase()}</h2>
       {loadedTasks && loadedNotes ?
-      <div className="week__container">
+      <div className='week__container fadeIn'>
         <p className='clear-btn' onClick={clearWeek}>clear</p>
         <div className='weekdays__container'>
           <Day data={{id: userData.id, day: 1, tasks: tasks[0], title: 'mon ' + weekDates.current[0]}} key={keys[0]} />

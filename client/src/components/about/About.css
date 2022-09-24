@@ -8,6 +8,11 @@
   height: fit-content;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .direction__container {
   margin-top: 5rem;
   font-size: 2rem;
@@ -39,6 +44,7 @@
   width: 30%;
   height: 30%;
   margin-top: 40px;
+  animation: fadeIn 1s;
 }
 
 /* ===== MEDIA QUERIES (SHORT SCREENS) ===== */

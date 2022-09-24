@@ -21,7 +21,7 @@ h1 {
 }
 
 .login__container {
-  background: rgba(231, 250, 255, 0.5);/* rgb(210, 237, 247, 0.8);/* var(--color-light);/*rgba(176,224,230, 1) rgb(214, 238, 254, 0.8);*/
+  background: rgba(231, 250, 255, 0.5); /* rgb(210, 237, 247, 0.8);/* var(--color-light);/*rgba(176,224,230, 1) rgb(214, 238, 254, 0.8);*/
   border: 0px solid var(--color-light);
   color: var(--color-primary);
   width: 60rem;
@@ -40,7 +40,7 @@ h1 {
 
 .login__container form {
   text-align: center;
-  animation: fadeIn 1.5s;
+  /* animation: fadeIn 0.2s; */
 }
 
 .login__container p {

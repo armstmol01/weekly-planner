@@ -23,8 +23,8 @@ const Nav = (props) => {
   return (
     <nav>
       {/* <Link to='/' id={activeNav === 'home' ? 'name' : ''} className={activeNav === 'home' ? 'home link' : 'link'}>{activeNav==='home'?'Molly\'s':<IoMdArrowRoundBack className='back-arrow-icon'/>}</Link> */}
-      {activeNav === 'login' ? <Link to='/' id='name' className='link'>{'wrkweek'}</Link> : <div className='link'><IoMdArrowRoundBack className='back-arrow-icon' onClick={() => {navigate(backDest())}}/></div>}
-      {activeNav === 'login' || activeNav === 'about' ? <Link to='/about' className={activeNav === 'about'? 'about link' : 'link'}>about</Link> : ''}
+      {activeNav === 'login' ? <div id='name' className='link disabled-btn'>{'wrkweek'}</div> : <div className='link'><IoMdArrowRoundBack className='back-arrow-icon' onClick={() => {navigate(backDest())}}/></div>}
+      {activeNav === 'login' || activeNav === 'about' ? <Link to='/about' className={activeNav === 'about' ? 'about link disabled-btn' : 'link'}>about</Link> : ''}
     </nav>
   )
 }

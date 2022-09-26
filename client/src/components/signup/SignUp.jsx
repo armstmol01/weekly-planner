@@ -41,8 +41,8 @@ const SignUp = () => {
       <Nav data='signup' className='nav'></Nav>
       <form onSubmit={event => handleSubmit(event)}>
           <p>Enter a username and password</p>
-          <input name='username' placeholder='username' type='text' autocorrect='off' autocapitalize='none' required></input>
-          <input name='password' placeholder='password' type='text'  autocorrect='off' autocapitalize='none' required></input>
+          <input name='username' placeholder='username' type='text' autoCorrect='off' autoCapitalize='none' required></input>
+          <input name='password' placeholder='password' type='text'  autoCorrect='off' autoCapitalize='none' required></input>
           <button type="submit">Create account</button>
           {errorMsg === '' ? <div>{successMsg}</div>:<p className='error__msg'>{errorMsg}</p>}
       </form>

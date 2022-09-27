@@ -135,12 +135,12 @@ const Home = () => {
     // console.log(error);
     setLoadedTasks(false);
     setLoadedNotes(false);
-    if (error.response) {
-      // console.log(error.response.data);
-      setErrorMsg(error.response.data);
-    } else {
+    // if (error.response) {
+    //   // console.log(error.response.data);
+    //   setErrorMsg(error.response.data);
+    // } else {
       setErrorMsg("Failed to load resources");
-    }
+    // }
   }
 
   return (

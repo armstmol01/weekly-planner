@@ -1,7 +1,7 @@
 import React from 'react'
 import './About.css'
 import Nav from '../nav/Nav'
-import DEMO from '../../assets/bestdemo1.gif'
+import DEMO from '../../assets/bestdemo2.gif'
 import { IoIosAdd } from 'react-icons/io'
 import { BsCheck } from 'react-icons/bs'
 import { GrGithub } from 'react-icons/gr'

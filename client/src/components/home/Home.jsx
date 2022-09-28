@@ -81,6 +81,7 @@ const Home = () => {
     let tasks = res.tasks;
     let week = [[], [], [], [], [], [], []];
     for (let i = 0; i < tasks.length; i++) {
+      // unshift = add to front of list
       week[tasks[i].day - 1].unshift(tasks[i]); // indices 0 - 6 hold days 1 - 7
     }
     weekDates.current = getWeekDates();
@@ -139,7 +140,7 @@ const Home = () => {
     //   // console.log(error.response.data);
     //   setErrorMsg(error.response.data);
     // } else {
-      setErrorMsg("Failed to load resources");
+    setErrorMsg("Failed to load resources");
     // }
   }
 

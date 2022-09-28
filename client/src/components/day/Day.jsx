@@ -38,7 +38,7 @@ const Day = (props) => {
     // important in case that user adds an empty task by newTask is still value of previous
     newTask.current = "";
     let temp = taskState;
-    temp.unshift({id: temp.length + 1, user_id: id, day: day, content: taskContent});
+    temp.push({id: temp.length + 1, user_id: id, day: day, content: taskContent});
     setTaskState(temp);
     document.getElementById('task-input').textContent = "";
   }
@@ -48,13 +48,13 @@ const Day = (props) => {
       {active===false?<IoIosAdd className='fixed__btn' onClick={() => {setActive(true)}}/>:<BsCheck className='fixed__btn' onClick={() => {addTask()}}/>}
       <p className='day-title'>{title}</p>
       <div className='spacing'><br></br></div>
+      <div className='tasks__container'>
+        <TaskList data={{userId: id, day: day, tasks: taskState}} />
+      </div>
       {active===true?<div className='task new-task'>
         <div className='check__box'></div>
         <input id='task-input' spellCheck='false' onChange={(event) => {newTask.current = event.target.value}}></input>
       </div>:''}
-      <div className='tasks__container'>
-        <TaskList data={{userId: id, day: day, tasks: taskState}} />
-      </div>
     </section>
   )
 }

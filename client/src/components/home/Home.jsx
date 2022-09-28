@@ -82,7 +82,7 @@ const Home = () => {
     let week = [[], [], [], [], [], [], []];
     for (let i = 0; i < tasks.length; i++) {
       // unshift = add to front of list
-      week[tasks[i].day - 1].unshift(tasks[i]); // indices 0 - 6 hold days 1 - 7
+      week[tasks[i].day - 1].push(tasks[i]); // indices 0 - 6 hold days 1 - 7
     }
     weekDates.current = getWeekDates();
     setTasks(week);

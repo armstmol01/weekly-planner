@@ -8,7 +8,7 @@ section {
   font-family: 'Inter', sans-serif;
   font-weight: 200;
   color: var(--color-primary);
-  overflow: scroll;
+  /* overflow: auto; */
 }
 
 .mon, .tue, .wed, .thu, .fri {
@@ -50,9 +50,15 @@ section {
   border-radius: 25px; */
 }
 
-.tasks__container {
+#tasks__container {
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  height: 100%;
+}
+
+#tinput {
+  overflow: auto;
 }
 
 #task-input {
@@ -70,6 +76,10 @@ section {
 
 .task p, #task-input {
   font-size: 15px;
+}
+
+.hidden {
+  display: none;
 }
 
 /* ===== MEDIA QUERIES (SHORT SCREENS) ===== */

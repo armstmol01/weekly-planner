@@ -12,6 +12,7 @@ const Day = (props) => {
   let id = props.data.id;
   let day = props.data.day;
   let tasks = props.data.tasks;
+  let scrollBottom = 'special-' + props.data.title.substring(0,3);
   const newTask = useRef("");
   const [taskState, setTaskState] = useState(tasks);
   const [active, setActive] = useState(false);
@@ -37,24 +38,38 @@ const Day = (props) => {
     setActive(false);
     // important in case that user adds an empty task by newTask is still value of previous
     newTask.current = "";
+    // document.querySelector(".new-task-input").value = "";
     let temp = taskState;
     temp.push({id: temp.length + 1, user_id: id, day: day, content: taskContent});
     setTaskState(temp);
     document.getElementById('task-input').textContent = "";
   }
 
+  const activeTask = () => {
+    newTask.current = ""; // make sure it's clear
+    // document.querySelector(".new-task-input").value = "";
+    setActive(true);
+
+    // important that it's delayed to make sure elem is rendered
+    setTimeout(() => {let elem = document.getElementById(scrollBottom); elem.scrollIntoView(false)}, 10);
+  }
+
   return (
     <section className={title}>
-      {active===false?<IoIosAdd className='fixed__btn' onClick={() => {setActive(true)}}/>:<BsCheck className='fixed__btn' onClick={() => {addTask()}}/>}
+      {active===false?<IoIosAdd className='fixed__btn' onClick={() => activeTask()}/>:<BsCheck className='fixed__btn' onClick={() => {addTask()}}/>}
       <p className='day-title'>{title}</p>
       <div className='spacing'><br></br></div>
-      <div className='tasks__container'>
+      <div id='tasks__container'>
         <TaskList data={{userId: id, day: day, tasks: taskState}} />
+        {active===true?<div id={scrollBottom} className='task new-task'>
+          <div className='check__box'></div>
+          <input id='task-input' className='new-task-input' default="" spellCheck='false' onChange={(event) => {newTask.current = event.target.value}}></input>
+        </div>: ''}
+        {/* // <div id={scrollBottom} className={active===true?'task new-task':'hidden'}>
+        //   <div className='check__box'></div>
+        //   <input id='task-input' className='new-task-input' default="" spellCheck='false' onChange={(event) => {newTask.current = event.target.value}}></input>
+        // </div> */}
       </div>
-      {active===true?<div className='task new-task'>
-        <div className='check__box'></div>
-        <input id='task-input' spellCheck='false' onChange={(event) => {newTask.current = event.target.value}}></input>
-      </div>:''}
     </section>
   )
 }

@@ -135,12 +135,12 @@ section {
 
 @media screen and (max-width: 850px) {
   .mon, .tue, .wed, .thu, .fri {
-    max-height: 9rem;
+    max-height: 14rem;
     width: 90vw;
   }
 
   .sat, .sun {
-    height: 9rem;
+    height: 14rem;
     width: 90vw;
   }
 

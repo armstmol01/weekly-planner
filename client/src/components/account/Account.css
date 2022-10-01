@@ -149,4 +149,9 @@
   .account__body form {
     width: 90%;
   }
+
+  .account__body form > button {
+    width: 5rem;
+    /* align-self: center; */
+  }
 }

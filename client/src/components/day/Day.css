@@ -58,8 +58,8 @@ section {
   display: flex;
   flex-direction: column;
   overflow: auto;
-  min-height: fit-content;
-  max-height: 100%;
+  height: fit-content;
+  /* max-height: 100%; */
 }
 
 #tinput {

@@ -1,6 +1,6 @@
 .task {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 10px;
   padding-left: 5px;
   min-height: 25px;

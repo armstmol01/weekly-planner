@@ -159,6 +159,7 @@ section {
 
   .notes-input {
     font-size: 16px;
+    min-height: 10rem;
   }
 
   .week-title {

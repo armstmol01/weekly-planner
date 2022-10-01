@@ -52,18 +52,29 @@ const Day = (props) => {
       elem.scrollIntoViewIfNeeded(false)}, 10);
   }
 
+  // making the task container a form allows user to submit
+  // task w/ 'enter' key
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (active) {
+      addTask();
+    } else {
+      activeTask();
+    }
+  }
+
   return (
     <section className={title}>
-      {active===false?<IoIosAdd className='fixed__btn' onClick={() => activeTask()}/>:<BsCheck className='fixed__btn' onClick={() => {addTask()}}/>}
       <p className='day-title'>{title}</p>
-      <div className='spacing'><br></br></div>
-      <div id='tasks__container'>
+      <form id='tasks__container' onSubmit={event => handleSubmit(event)}>
+        <button id='fixed__btn' type='submit'>{active===false?<IoIosAdd/>:<BsCheck/>}</button>
+        <div className='spacing'><br></br></div>
         <TaskList data={{userId: id, day: day, tasks: taskState}} />
         {active===true?<div id={scrollBottom} className='task new-task'>
           <div className='check__box'></div>
           <input id='task-input' default="" spellCheck='false' onChange={(event) => {newTask.current = event.target.value}}></input>
         </div>: ''}
-      </div>
+      </form>
     </section>
   )
 }

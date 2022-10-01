@@ -44,7 +44,7 @@
 }
 
 .account__body form > button {
-  width: fit-content;
+  width: 4rem;
   padding: 0 6%;
   display: flex;
   align-items: center;

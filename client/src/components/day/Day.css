@@ -71,7 +71,7 @@ section {
    /* 5px bottom so its same as exisiting task spacing */
   padding-left: 0px; /* 3px */
   border-radius: 0; /* 5px */
-  width: 80%;
+  width: 73.5%;
   font-family: 'Inter', sans-serif;
   font-weight: 200;
   color: var(--color-primary);

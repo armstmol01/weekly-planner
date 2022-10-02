@@ -149,8 +149,8 @@ section {
 
   .notes {
     width: 90vw;
-    min-height: 10rem;
-    max-height: fit-content;
+    height: 14rem;
+    /* max-height: fit-content; */
   }
 
   .notes-title {

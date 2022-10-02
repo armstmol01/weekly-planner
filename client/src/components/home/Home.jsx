@@ -61,7 +61,6 @@ const Home = () => {
     // console.log("SAVING NOTES");
     // console.log(notesContent);
     let content = notesContent || "";
-    console.log(content.trim());
     await axios.post('/api/save-notes', {
       userId: userData.id,
       notes: content.trim() // notes.current
@@ -171,7 +170,7 @@ const Home = () => {
           <Day data={{id: userData.id, day: 7, tasks: tasks[6], title: 'sun ' + weekDates.current[6]}} key={keys[6]}/>
           <section className='notes'>
             <p className='notes-title'>Notes</p>
-            <textarea id='notesbox' className='notes-input' spellCheck='false' defaultValue={notes.current} onBlur={(event) => saveNotes(event.currentTarget.value)}></textarea>
+            <textarea id='notesbox' className='notes-input' spellCheck='false' defaultValue={notes.current} onBlur={(event) => saveNotes(document.getElementById('notesbox').value)}></textarea>
           </section>
         </div>
       </div> :

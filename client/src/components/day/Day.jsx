@@ -14,6 +14,7 @@ const Day = (props) => {
   let tasks = props.data.tasks;
   let scrollBottom = 'special-' + props.data.title.substring(0,3);
   const newTask = useRef("");
+  const enterKeyPress = useRef(false);
   const [taskState, setTaskState] = useState(tasks);
   const [active, setActive] = useState(false);
 
@@ -42,6 +43,10 @@ const Day = (props) => {
     temp.push({id: temp.length + 1, user_id: id, day: day, content: taskContent});
     setTaskState(temp);
     document.getElementById('task-input').textContent = "";
+    if (enterKeyPress.current) {
+      setTimeout(() => {activeTask();}, 10);
+    }
+    enterKeyPress.current = false;
   }
 
   const activeTask = () => {
@@ -63,6 +68,15 @@ const Day = (props) => {
     }
   }
 
+  // allows us to differentiate between submitting by pressing enter
+  // key in input box and by clicking on submit button
+  // when we press enter key we want another input box to appear
+  const updateEnterKeyPress = (event) => {
+    if (event.keyCode === 13) {
+      enterKeyPress.current = true;
+    }
+  }
+
   return (
     <section className={title}>
       <p className='day-title'>{title}</p>
@@ -72,7 +86,7 @@ const Day = (props) => {
         <TaskList data={{userId: id, day: day, tasks: taskState}} />
         {active===true?<div id={scrollBottom} className='task new-task'>
           <div className='check__box'></div>
-          <input id='task-input' default="" spellCheck='false' onChange={(event) => {newTask.current = event.target.value}}></input>
+          <input id='task-input' type='text' autoFocus default="" spellCheck='false' onKeyDown = {(event) => updateEnterKeyPress(event)} onChange={(event) => {newTask.current = event.target.value}}></input>
         </div>: ''}
       </form>
     </section>

@@ -54,6 +54,7 @@ const Day = (props) => {
     // important that it's delayed to make sure elem is rendered
     setTimeout(() => {
       let elem = document.getElementById(scrollBottom);
+      elem.blur();
       elem.focus();
       elem.scrollIntoViewIfNeeded(false)}, 10);
   }
@@ -87,7 +88,7 @@ const Day = (props) => {
         <TaskList data={{userId: id, day: day, tasks: taskState}} />
         {active===true?<div id={scrollBottom} className='task new-task'>
           <div className='check__box'></div>
-          <input id='task-input' type='text' autoFocus default="" spellCheck='false' onKeyDown = {(event) => updateEnterKeyPress(event)} onChange={(event) => {newTask.current = event.target.value}}></input>
+          <input id='task-input' type='text' default="" spellCheck='false' onKeyDown = {(event) => updateEnterKeyPress(event)} onChange={(event) => {newTask.current = event.target.value}}></input>
         </div>: ''}
       </form>
     </section>

@@ -46,8 +46,8 @@ const Day = (props) => {
     setTaskState(temp);
     document.getElementById('task-input').textContent = "";
     if (enterKeyPress.current) {
-      setTimeout(() => {activeTask();}, 10);
       enterKeyPress.current = false;
+      setTimeout(() => {activeTask();}, 10);
     }
   }
 
@@ -88,7 +88,7 @@ const Day = (props) => {
         <TaskList data={{userId: id, day: day, tasks: taskState}} />
         {active===true?<div id={scrollBottom} className='task new-task'>
           <div className='check__box'></div>
-          <input id='task-input' autoFocus type='text' default="" spellCheck='false' onKeyDown = {(event) => updateEnterKeyPress(event)} onChange={(event) => {newTask.current = event.target.value}}></input>
+          <input id='task-input' autoFocus type='text' default="" spellCheck='false' onKeyDown = {event => updateEnterKeyPress(event)} onChange={(event) => {newTask.current = event.target.value}}></input>
         </div>: ''}
       </form>
     </section>

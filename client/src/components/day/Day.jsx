@@ -54,6 +54,7 @@ const Day = (props) => {
     // important that it's delayed to make sure elem is rendered
     setTimeout(() => {
       let elem = document.getElementById(scrollBottom);
+      elem.focus();
       elem.scrollIntoViewIfNeeded(false)}, 10);
   }
 

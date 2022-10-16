@@ -45,8 +45,8 @@ const Day = (props) => {
     document.getElementById('task-input').textContent = "";
     if (enterKeyPress.current) {
       setTimeout(() => {activeTask();}, 10);
+      enterKeyPress.current = false;
     }
-    enterKeyPress.current = false;
   }
 
   const activeTask = () => {

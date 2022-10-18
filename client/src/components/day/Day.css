@@ -54,32 +54,28 @@ section {
   border-radius: 25px; */
 }
 
-#tasks__container {
+.tasks__container {
   display: flex;
   flex-direction: column;
   overflow: auto;
   height: fit-content;
+}
   /* max-height: 100%; */
-}
 
-#tinput {
-  overflow: auto;
-}
-
-#task-input {
+.task-input {
   height: 25px;
    /* 5px bottom so its same as exisiting task spacing */
-  padding-left: 0px; /* 3px */
+  padding: 0px; /* 3px */
   border-radius: 0; /* 5px */
-  width: 73.5%;
   font-family: 'Inter', sans-serif;
   font-weight: 200;
+  width: 80%;
   color: var(--color-primary);
   border: none;
   background-color: transparent;
 }
 
-.task p, #task-input {
+.task p, .task-input {
   font-size: 15px;
 }
 
@@ -153,11 +149,11 @@ section {
     width: 89.4vw;
   }
 
-  .task p, #task-input {
+  .task p, .task-input {
     font-size: 16px;
   }
 
-  #task-input {
+  .task-input {
     font-size: 16px;
   }
 }

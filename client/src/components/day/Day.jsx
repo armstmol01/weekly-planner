@@ -42,7 +42,7 @@ const Day = (props) => {
     let temp = taskState;
     temp.push({id: temp.length + 1, user_id: id, day: day, content: taskContent});
     setTaskState(temp);
-    document.getElementById('task-input').textContent = "";
+    document.querySelector('.task-input').textContent = "";
     // if user hits enter to submit task, add new task input
     // for ease of creating multiple tasks
     if (enterKeyPress.current) {
@@ -82,13 +82,13 @@ const Day = (props) => {
   return (
     <section className={title}>
       <p className='day-title'>{title}</p>
-      <form id='tasks__container' onSubmit={event => handleSubmit(event)}>
+      <form className='tasks__container' onSubmit={event => handleSubmit(event)}>
         <button id='fixed__btn' type='submit'>{active===false?<IoIosAdd/>:<BsCheck/>}</button>
         <div className='spacing'><br></br></div>
         <TaskList data={{userId: id, day: day, tasks: taskState}} />
         {active===true?<div id={scrollBottom} className='task new-task'>
           <div className='check__box'></div>
-          <input id='task-input' autoFocus type='text' default="" spellCheck='false' onBlur={event => handleSubmit(event)} onKeyDown = {event => updateEnterKeyPress(event)} onChange={(event) => {newTask.current = event.target.value}}></input>
+          <input className='task-input' autoFocus type='text' default="" spellCheck='false' onBlur={event => handleSubmit(event)} onKeyDown = {event => updateEnterKeyPress(event)} onChange={(event) => {newTask.current = event.target.value}}></input>
         </div>: ''}
       </form>
     </section>

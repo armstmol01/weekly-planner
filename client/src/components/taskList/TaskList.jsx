@@ -42,6 +42,7 @@ const TaskList = (props) => {
         break;
       }
       case 2: {
+        event.preventDefault();
         deleteTask(event);
         break;
       }

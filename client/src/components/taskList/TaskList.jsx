@@ -16,7 +16,7 @@ const TaskList = (props) => {
       userId: userId,
       day: day,
       task: event.currentTarget.querySelector('p').textContent
-    }).catch();
+    }).catch(() => {return});
   }
 
   const checkTask = async (task, checkedStatus) => { // task = event.currentTarget
@@ -25,7 +25,7 @@ const TaskList = (props) => {
       day: day,
       task: task.querySelector('p').textContent,
       checkedStatus: checkedStatus
-    }).catch();
+    }).catch(() => {return});
   }
 
   const handleTaskClick = (event) => {

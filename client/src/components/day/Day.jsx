@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect, useRef, useReducer } from 'react'
+import { useState, useRef} from 'react'
 import './Day.css'
 import TaskList from '../taskList/TaskList'
 import { IoIosAdd } from 'react-icons/io'
@@ -26,12 +26,10 @@ const Day = (props) => {
       return;
     }
 
-    setTimeout(() => {let elem = document.getElementById(scrollBottom); elem.blur();}, 10);
-
     await axios.post('/api/add-task', {
       userId: id,
       day: day,
-      task: newTask.current.trim() // document.getElementById('task-input').value
+      task: newTask.current.trim()
     })
     .then(updateTasks(newTask.current))
     .catch(setActive(false));
@@ -45,6 +43,8 @@ const Day = (props) => {
     temp.push({id: temp.length + 1, user_id: id, day: day, content: taskContent});
     setTaskState(temp);
     document.getElementById('task-input').textContent = "";
+    // if user hits enter to submit task, add new task input
+    // for ease of creating multiple tasks
     if (enterKeyPress.current) {
       enterKeyPress.current = false;
       setTimeout(() => {activeTask();}, 10);

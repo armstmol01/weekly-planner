@@ -170,7 +170,7 @@ const Home = () => {
           <Day data={{id: userData.id, day: 7, tasks: tasks[6], title: 'sun ' + weekDates.current[6]}} key={keys[6]}/>
           <section className='notes'>
             <p className='notes-title'>Notes</p>
-            <textarea id='notesbox' className='notes-input' spellCheck='false' defaultValue={notes.current} onBlur={(event) => saveNotes(document.getElementById('notesbox').value)}></textarea>
+            <textarea id='notesbox' className='notes-input' spellCheck='false' defaultValue={notes.current} onBlur={() => {saveNotes(document.getElementById('notesbox').value)}}></textarea>
           </section>
         </div>
       </div> :

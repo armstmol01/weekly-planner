@@ -37,12 +37,13 @@ const TaskList = (props) => {
         // since props aren't changed/no new fetch call when we add a task
         // the .completed is associated w/ index not the task itself, so we have to make
         // sure to update props whenever a task is checked so .completed will "belong" to the task
+        // display checked task
         tasks[event.currentTarget.id].checked = event.currentTarget.classList.contains('completed');
+        // save checked task state
         checkTask(event.currentTarget, checkedStatus);
         break;
       }
       case 2: {
-        event.preventDefault();
         deleteTask(event);
         break;
       }
@@ -62,7 +63,7 @@ const TaskList = (props) => {
       return (
         <div className={cName} id={index} key={index} onClick={handleTaskClick}>
           <div className='check__box'></div>
-          <p>{content}</p>
+          <p className='noselect'>{content}</p>
         </div>
       );
     })

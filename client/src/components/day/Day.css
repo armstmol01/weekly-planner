@@ -136,7 +136,7 @@ section {
 
 @media screen and (max-width: 850px) {
   .mon, .tue, .wed, .thu, .fri {
-    max-height: 14rem;
+    height: 14rem;
     width: 90vw;
   }
 

@@ -86,7 +86,7 @@ const Day = (props) => {
         <button id='fixed__btn' type='submit'>{active===false?<IoIosAdd/>:<BsCheck/>}</button>
         <div className='spacing'><br></br></div>
         <TaskList data={{userId: id, day: day, tasks: taskState}} />
-        {active===true?<div id={scrollBottom} className='task new-task'>
+        {active===true?<div id={scrollBottom} className='input__task new-task'>
           <div className='check__box'></div>
           <input className='task-input' autoFocus type='text' default="" spellCheck='false' onBlur={event => handleSubmit(event)} onKeyDown = {event => updateEnterKeyPress(event)} onChange={(event) => {newTask.current = event.target.value}}></input>
         </div>: ''}

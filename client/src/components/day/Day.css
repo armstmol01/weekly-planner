@@ -62,6 +62,16 @@ section {
 }
   /* max-height: 100%; */
 
+  .input__task {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding-left: 5px;
+    max-height: fit-content;
+    /* max-width: 100%; */
+    cursor: pointer;
+  }
+
 .task-input {
   height: 25px;
    /* 5px bottom so its same as exisiting task spacing */

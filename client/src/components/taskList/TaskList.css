@@ -4,14 +4,14 @@
   gap: 10px;
   padding-left: 5px;
   max-height: fit-content;
-  width: fit-content;
   max-width: 95%;
+  width: fit-content;
   cursor: pointer;
 }
 
-.task p  {
-  max-width: 80%;
-}
+/* .task p  {
+  width: fit-content;
+} */
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */

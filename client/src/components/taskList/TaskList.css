@@ -4,7 +4,7 @@
   gap: 10px;
   padding-left: 5px;
   max-height: fit-content;
-  min-width: fit-content;
+  width: fit-content;
   max-width: 95%;
   cursor: pointer;
 }

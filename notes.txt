@@ -8,6 +8,8 @@ Root dir:
 - dependencies/modules
   - concurrently
   - express
+  - path
+  - pg
 
 Client dir:
 - package.json:
@@ -44,7 +46,7 @@ Heroku Database
   } })();
 - set DATABASE_URL=postgres://$(whoami) (for local dev)
   - postgresql://postgres:molly2001@localhost:5432/werkweek
-- heroku pg:psql (interact w/ db)
+- heroku pg:psql (interact w/ db), \q to quit
 
 Heroku Config Vars & .env File
 - heroku config (list config vars, heroku version of .env)
